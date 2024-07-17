@@ -21,15 +21,23 @@ export const getUser= async (req, res) => {
 
 export const updateUser= async (req, res) => {
     const id = req.params.id;
-    const { username, email, password } = req.body;
-    const passwordHash = await bcryptjs.hash(password, 10);
+    const tokenUserId = req.user.id;
+   const {password, ...inputs} = req.body;
+    if(tokenUserId !== id){
+        return res.status(403).send({message: "You can only update your account"});
+    }
+    let updatedPassword;
     try{
+        if(password){
+            updatedPassword = await bcryptjs.hash(password, 10);
+        }
         const user = await User.findByIdAndUpdate(id, {
-            username,
-            email,
-            password: passwordHash,
+            ...inputs,
+            password: updatedPassword
+        }, {new: true
         });
-        res.send(user);
+        const {password:userPassword, ...others} = user._doc;
+        res.send(others);
     }catch(error){
         res.status(500).send({ message: error.message });
     }
@@ -37,6 +45,10 @@ export const updateUser= async (req, res) => {
 
 export const deleteUser= async (req, res) => {
     const id = req.params.id;
+    const tokenUserId = req.userId;
+    if(tokenUserId !== id){
+        return res.status(403).send({message: "You can only delete your account"});
+    }
     try{
         const deleteUser = await User.findByIdAndDelete(id);
         res.send(deleteUser);

@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
 import userRoute from './routes/user.route.js';
 import authRoute from './routes/auth.route.js';
+import newsRoute from './routes/news.route.js';
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ mongoose.connect(process.env.Database_URL)
 app.use(cookieParser());
 app.use('/api/users', userRoute);
 app.use('/api/auth', authRoute);
+app.use('/api/news', newsRoute);
 
 
 app.listen(8800, () => {

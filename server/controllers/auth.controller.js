@@ -16,8 +16,9 @@ export const register = async (req, res) => {
             email,
             password: hashedPassword,
         });
-        console.log("New user created:", newUser);
-        res.status(201).json({ newUser });
+        const{password:userPassword, ...userInfo} = newUser._doc;
+        // console.log("New user created:", newUser);
+        res.status(201).json({ userInfo });
     } catch (error) {
         console.error("Error in registration:", error);
         res.status(500).json({ message: "Failed to register user" });
@@ -36,7 +37,7 @@ export const login = async (req, res) => {
         if(!comparePassword){
             return res.status(400).json({message: "Incorrect password"});
         }
-        const token = jwt.sign({id: user._id}, process.env.JWT_SECRET, {expiresIn: '1d'});
+        const token = jwt.sign({id: user._id, role: user.role}, process.env.JWT_SECRET, {expiresIn: '1d'});
         const {password:userPassword, ...userInfo} = user._doc;
         res.cookie('token', token, {
             httpOnly: true,
