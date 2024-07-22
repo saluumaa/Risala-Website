@@ -5,7 +5,7 @@ import {adminVerification} from '../utils/adminVerification.js';
 const router = express.Router();
 
 
-router.get("/", validateToken, adminVerification, fetchAllMessages);
+router.get("/", validateToken,fetchAllMessages);
 router.get('/:id', validateToken, adminVerification, fetchMessageById);
 router.post('/send', validateToken, sendMessage);
 router.post('/recieve',validateToken, adminVerification, respondMessage);

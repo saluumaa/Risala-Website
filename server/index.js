@@ -6,6 +6,7 @@ import userRoute from './routes/user.route.js';
 import authRoute from './routes/auth.route.js';
 import newsRoute from './routes/news.route.js';
 import messageRoute from './routes/message.route.js';
+import sypRoute from './routes/sProgramme.route.js';
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ app.use('/api/users', userRoute);
 app.use('/api/auth', authRoute);
 app.use('/api/news', newsRoute);
 app.use('/api/messages', messageRoute);
+app.use('/api/syp', sypRoute);
 
 
 app.listen(8800, () => {
