@@ -17,7 +17,7 @@ export const register = async (req, res) => {
             password: hashedPassword,
         });
         const{password:userPassword, ...userInfo} = newUser._doc;
-        // console.log("New user created:", newUser);
+        console.log("New user created:", newUser);
         res.status(201).json({ userInfo });
     } catch (error) {
         console.error("Error in registration:", error);

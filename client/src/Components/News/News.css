@@ -1,0 +1,244 @@
+
+
+/* ------------ Style News component----------------- */
+
+.news-wrapper {
+  margin-top: 1.5rem;
+  /* display: grid;
+  grid-template-columns: 1fr; */
+  padding: 10px 20px;
+  /* gap: 30px; */
+  color: var(--body_color)
+}
+a.news-link {
+  text-decoration: none;
+  color: var(--body_color);
+}
+
+.post-image {
+  width: 100%;
+  height: auto;
+  margin: 5px auto;
+}
+
+img.post-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  /* padding-left: 50px; */
+  padding: 10px;
+  position: relative;
+}
+
+img.post-image::after {
+  content: '';
+  position: absolute;
+  /* top: 20px;
+  left: 20px;
+  width: 100%;
+  background: var(--primary_color); */
+
+}
+
+.news-page-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 10px;
+  /* gap: 10px; */
+  color: var(--body_color);
+}
+
+.news-page-wrapper h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--primary_color);
+}
+
+.news-page-wrapper p {
+  font-size: 1.2rem;
+  flex-wrap: wrap;
+  padding: 5px;
+  font-weight: 400;
+  margin-top: 12px;
+  text-align: justify;
+}
+
+
+.item-body span {
+  padding-left: 5px;
+  font-style: italic;
+}
+
+.news-page-wrapper h5{
+  font-weight: 100;
+}
+
+/* ----------- ADD FORM -------------- */
+
+.add-form-container {
+  display: block;
+  margin-top: 2rem;
+  padding: 20px;
+  color: #000
+}
+
+form {
+  display: block;
+  margin: 20px auto;
+  border-radius: 10px;
+  background-color: #fff;
+  color: #000;
+}
+
+form input {
+  padding: 30px 20px;
+  border: none;
+  border-bottom: 1px solid var(--primary_color);
+  width: 100%;
+}
+
+
+input[type="file"] {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary_color);
+  display: block;
+}
+
+input::placeholder {
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--primary_color);
+}
+
+input:focus, textarea:focus {
+  outline: none;
+}
+
+.submit-btn {
+  padding: 15px 30px;
+  border: none;
+  border-radius: 25px;
+  background: var(--primary_color);
+  color: var(--body_color);
+  font-size: 1.3rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.add-btn button {
+  border: none;
+  background: transparent;
+  padding: 10px;
+  font-size: 1.5rem;
+  color: var(--body_color);
+}
+
+.add-btn {
+  margin-top: 3rem;
+  text-align: center;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  background: var(--primary_color);
+  color: var(--body_color);
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin: auto;
+}
+
+.news-page-wrapper button:hover, .add-btn:hover, .submit-btn:hover, button.del-btn:hover {
+  background: #000;
+  color: var(--body_color)
+}
+
+
+@media screen and (min-width: 768px) {
+  .news-header {
+    margin-top: 13rem;
+    display: flex;
+    color: var(--body_color);
+    text-align: center;
+    gap: 2rem;
+    width: 50%;
+  }
+
+  /* .news-header h1 {
+    font-size: 2rem;
+    max-width: 80%;
+    position: relative;
+  }
+
+  .news-header-img {
+    display: block;
+  }
+  
+  .news-header-img img {
+    width: 100%;
+    max-height: 30%;
+    margin-top: 28px;
+  }   */
+
+  .news-page {
+    margin-top: 5rem;
+  }
+  
+
+
+  /* ------------ Style News component----------------- */
+  .news-wrapper {
+    margin-top: 5rem;
+    display: grid;
+    grid-template-columns: 0.8fr 1fr;
+    gap: 10px;
+  }
+
+  /* .item-img {
+    width: 100%;
+    height: 100%;
+    float: right;
+    margin-left: auto;
+  } */
+
+  .news-page-wrapper {
+    text-align: center;
+  }
+
+  .news-page-wrapper p {
+    text-align: center;
+    padding: 5px 15px;
+    width: 80%;
+  }
+
+  .add-btn {
+    margin-top: 5rem;
+  }
+
+  /* ----------- ADD FORM -------------- */
+  .add-form-container {
+    margin-top: 5rem;
+    color: var(--body_color);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+
+  
+  .news-header {
+    margin-top: 12rem;
+    display: flex;
+    color: var(--body_color);
+    text-align: center;
+    gap: 2rem;
+    width: 50%;
+  }
+
+  
+}

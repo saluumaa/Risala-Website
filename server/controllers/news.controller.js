@@ -25,8 +25,8 @@ export const getSingleNews= async (req, res) => {
 }
 
 export const createNews = async (req, res) => {
-    // const tokenUserId = req.userId;
-    const { title, body, images, date, place, target } = req.body;
+    const { title, body, date, place, target } = req.body;
+    const images = req.files.map((file) => file.path);
     try {
         const addPost = await Post.create({
             title,

@@ -1,0 +1,133 @@
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  color: var(--body_color);
+}
+
+.about-content-main {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.about-image img {
+  max-width: 100%;
+  height: 90%;
+  margin-top: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.about-text {
+  flex: 1;
+  padding: 0 30px;
+}
+
+.about-title {
+  font-size: 2em;
+  color: #333;
+}
+
+.about-content-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  gap: 30px;
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  gap: 20px;
+  padding: 20px;
+  background-color: var(--body_background_2);
+  color: var(--body_color);
+  border-radius: 15px;
+}
+
+.about-content:hover {
+  box-shadow: 0 0 5px #54f802, 0 0 5px #f3fde7, 0 0 3px #898EDE,
+  inset 0 0 2px #f1f2fc, 2px 0 2px #f8f8bd;
+}
+
+.about-content h2 {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--body_color);
+}
+
+.about-content hr {
+  border: 1px solid var(--body_color);
+  margin: 10px 0;
+  width: 10%;
+}
+
+.about-content h3 {
+  font-size: 1em;
+  color: var(--body_color);
+}
+
+.about-content-main h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary_color);
+    text-align:left;
+    padding: 10px 30px;
+}
+
+.about-content-main p {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    text-align: justify;
+    padding: 10px 30px;
+}
+
+.about-content hr {
+    margin-top: -10px;
+}
+
+.hierarchy {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.hierarchy hr {
+  width: 15%;
+  margin: 10px auto;
+}
+
+.hierarchy-image {
+  text-align: center;
+}
+
+.hierarchy-image img {
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (min-width: 768px) {
+  .about-content-main {
+    flex-direction: row;
+  }
+
+  .about-text {
+    padding: 0 40px;
+  }
+
+  .about-content-container {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+ .about-content hr {
+    width: 20%;
+  }
+
+  
+}
