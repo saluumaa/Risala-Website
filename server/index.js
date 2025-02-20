@@ -20,11 +20,11 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
-mongoose.connect(process.env.Database_URL, {
+mongoose.connect(process.env.Database_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 30000,  
-    socketTimeoutMS: 30000   
+    serverSelectionTimeoutMS: 10000, // Wait 10s before erroring out
+    socketTimeoutMS: 45000
 }).then(() => {
     console.log('Database connected');
 }).catch((err) => {
