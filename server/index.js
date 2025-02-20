@@ -20,16 +20,7 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
-mongoose.connect(process.env.Database_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 30000,  
-    socketTimeoutMS: 30000   
-}).then(() => {
-    console.log('Database connected');
-}).catch((err) => {
-    console.log(err);
-})
+mongoose.connect(process.env.Database_URL)
 
 app.use(cors({
     origin: process.env.CLIENT_URL,
@@ -54,5 +45,5 @@ app.use('/api/syp', sypRoute);
 
 
 app.listen(8800, () => {
-    console.log('Server is running on http://localhost:8000');
+    console.log('Server is running on http://localhost:8800');
 });
