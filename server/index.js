@@ -20,7 +20,16 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
-mongoose.connect(process.env.Database_URL)
+mongoose.connect(process.env.Database_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 30000,  
+    socketTimeoutMS: 30000   
+}).then(() => {
+    console.log('Database connected');
+}).catch((err) => {
+    console.log(err);
+})
 
 app.use(cors({
     origin: process.env.CLIENT_URL,
