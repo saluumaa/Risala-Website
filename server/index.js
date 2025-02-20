@@ -31,6 +31,8 @@ mongoose.connect(process.env.Database_URI, {
     console.log(err);
 })
 
+console.log('Database URI:', process.env.DATABASE_URI);
+
 app.use(cors({
     origin: process.env.CLIENT_URL,
     credentials: true,
