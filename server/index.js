@@ -20,11 +20,17 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
-mongoose.connect(process.env.Database_URI, {
+
+const mongoURI = process.env.DATABASE_URI;
+
+if (!mongoURI) {
+  console.error("❌ MongoDB URI is undefined. Check your environment variables.");
+  process.exit(1);
+}
+
+mongoose.connect(mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 10000, // Wait 10s before erroring out
-    socketTimeoutMS: 45000
 }).then(() => {
     console.log('Database connected');
 }).catch((err) => {
