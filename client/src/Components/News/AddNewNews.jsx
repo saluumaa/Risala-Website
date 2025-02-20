@@ -1,72 +1,69 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { createNews } from '../../redux/NewsSlice';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import apiRequest from '../../utils/apiRequest';
+// import {createNews} from '../../redux/NewsSlice';
 import Editor from '../Editor';
 import './News.css';
 
 const AddNewNews = () => {
-  const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
-  const [date, setDate] = useState('');
   const [imageFile, setImageFile] = useState([]); 
 
-  const user = useSelector((state) => state.user);
-  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.currentUser);
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!title || !body || !date) {
-      alert('Please fill in all fields');
-      return;
-    }
-
-    if (!user || !user.isAuthenticated) {
-      alert('User is not authenticated. Please log in.');
+    if (!user || user.role !== 'admin') {
+      alert('User is not authorized to add news.');
       return;
     }
 
     const formData = new FormData();
-    formData.append('news[title]', title);
-    formData.append('news[body]', body);
-    formData.append('news[date]', date);
+    formData.append('title', e.target.title.value);
+    formData.append('body', body);
+    formData.append('date', e.target.date.value);
+    formData.append('place', e.target.place.value);
+    formData.append('target', e.target.target.value);
 
-    const uniqueFiles = Array.from(new Set(imageFile));
-    if (uniqueFiles.length > 0) {
-      for (let i = 0; i < uniqueFiles.length; i++) {
-        formData.append('news[images][]', uniqueFiles[i]);
+    if (imageFile) {
+      for (let i = 0; i < imageFile.length; i++) {
+        formData.append('images', imageFile[i]);
       }
     }
 
-    console.log('FormData:', formData);
-    console.log('Image files:', imageFile);
     try {
-      await dispatch(createNews(formData));
-      setTitle('');
-      setBody('');
-      setDate('');
-      setImageFile([]); // Clear image files after submission
+      const response = await apiRequest.post('/news', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+      if(response.status === 201) {
+        alert('News added successfully');
+        navigate('/news');
+      }
     } catch (error) {
-      console.error('Error adding news:', error);
-      alert('Error adding news. Please try again.');
+      console.error('Add news failed:', error);
     }
-  };
+  }
 
   const handleImageChange = (e) => {
-    const files = Array.from(e.target.files);
-    setImageFile((prevFiles) => {
-      // Create a Set to avoid duplicates
-      const uniqueFiles = new Set([...prevFiles, ...files]);
-      return Array.from(uniqueFiles);
-    });
-  };
+    setImageFile(e.target.files);
+  }
 
   return (
     <div className='add-form-container'>
-      <form onSubmit={handleSubmit} >
-        <input type='text' placeholder='Title' value={title} onChange={(e) => setTitle(e.target.value)} />
-        <input type='file' multiple onChange={handleImageChange} />
-        <input type='date' placeholder='Date' value={date} onChange={(e) => setDate(e.target.value)} />
+      <form onSubmit={handleSubmit} className='add-new-form' >
+        <input type="text" name='title' placeholder='title' />
+        <input type="date" name='date'  />
+        <input type="file" name='images' onChange={handleImageChange} multiple
+          accept="image/png, image/jpeg, image/jpg, image/gif"
+        />
+        <input type="text" name="place" placeholder='place' />
+        <input type="text" name="target" placeholder='target' />
+        <input type="text" name="author" placeholder='author' />
         <Editor value={body} onChange={setBody} />
         <button
           type='submit'

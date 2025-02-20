@@ -1,8 +1,10 @@
 .news-page {
+    
+    margin-top: 45px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     /* align-items: center; */
-    padding: 20px;
     color: var(--body_color);
   }
   
@@ -39,14 +41,18 @@
   }
 
   .full-news-wrapper {
-    display: grid;
-    grid-template-columns: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-left: 15px;
+    /* grid-template-columns: 100%; */
   }
   
   
   .news-image {  
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: 100%;
     gap: 15px;
     width: 100%;
     margin-bottom: 20px;
@@ -63,7 +69,7 @@
     width: 100%;
     height: auto;
     object-fit: cover;
-    max-width: 800px;
+    /* max-width: 800px; */
     border-radius: 10px;
   }
   
@@ -72,19 +78,22 @@
     display: flex;
     gap: 10px;
     overflow-y: auto;
+    /* overflow-x: auto; */
     max-width: 700px;
     min-width: 200px;
+    max-height: 500px;
     border-radius: 10px
   }
   
   img.news-item-img {
     width: 200px;
-    height: auto;
+    height: 130px;
     cursor: pointer;
   }
   
   .news-body-container {
     width: 100%;
+    padding-right: 15px;
   }
   
   .news-body {
@@ -94,16 +103,37 @@
 
 
   @media screen and (min-width: 768px){
-
+    .news-page {
+      padding: 10px 80px;
+      margin-top: 75px;
+    }
     .full-news-wrapper {
       grid-template-columns: 60% 40%;
       gap: 20px;
-      /* justify-content: space-between; */
+    }
+
+    .news-image {
+      flex-direction: row;
+    }
+
+    .image-thumbnails{
+      flex-direction: column;
+      gap: 5px;
+      max-height: 800px;
+      
+    }
+
+    img.news-item-img-big{
+      max-width: 800px;
+      min-width: 400px;
+      min-height: 530px;
+     
     }
     
     .news-body {
       padding-right: 20px;
     }
+
   }
   
   @media screen and (min-width: 1024px){
@@ -120,6 +150,11 @@
     .image-thumbnails {
       max-width: 800px;
       min-width: 200px;
+      max-height: 800px;
+    }
+
+    .news-body-container {
+      width: 60%;
     }
 
   }

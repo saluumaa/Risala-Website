@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from 'react';
+import {motion} from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchNews} from '../../redux/NewsSlice';
+import formDate from '../../utils/dateFormatter'
 import { Link } from 'react-router-dom';
 import './News.css';
 
 const News = () => {
   const dispatch = useDispatch();
   const news = useSelector((state) => state.news.news);
-  // console.log('News:', news);
-  const user = useSelector((state) => state.user.user);
+  const user = useSelector((state) => state.user.currentUser);
   
   useEffect(() => {
     dispatch(fetchNews()); 
   }, [dispatch]);
 
 
-
   return (
-    <div className='news-page-frame'>
-      {user && user.role === 'admin' && (
+    <>
+          {user && user.role === 'admin' && (
         <div className='add-delete-btn add-btn'>
           <Link to='/addnews'>
             <button
@@ -26,24 +26,39 @@ const News = () => {
           </Link>
         </div>
       )}
-      {Array.isArray(news) && news.length > 0 && news.slice().reverse().map((item) => (
-        <Link to={`/news/${item.id}`} className='news-link'>
-        <div className='news-wrapper' key={item.id}>
-              <img src={item.images?.[0]
-              } alt='news' className='post-image' />
+    <div className='news-page-frame'>
+  
+      {news?.length > 0 && news.slice().reverse().map((item, index) => (
+        <Link to={`/news/${item._id}`} className='news-link'>
+        <motion.div className={`news-wrapper ${index % 2 !== 0 ? 'reverse-layout' : ''}`} key={item.id}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+        >
+          <div className="news-img-date">
+              <img src={`http://localhost:8800/${item.images[0]}`}
+              alt='news' className='post-image' />
+              {/* <div className='date'> */}
+                <h5>
+                {formDate(item.createdAt)}
+                </h5>
+                {/* </div> */}
+          </div>
+
           <div className='news-page-wrapper'>
             <h1>{item.title}</h1>
-            <p className='item-body'  >
-              {item.body.length > 200 ? item.body.slice(0, 200) + '...' : item.body}
-              <span>Readmore</span>
-            </p>
-            <h5>Date: {item.date}</h5>
+            <p className='news-item-body' dangerouslySetInnerHTML={
+               {__html: item.body.length > 80 ? item.body.slice(0, 80) + '...' : item.body}
+            }></p>
+            <span className='news-readmore'>Readmore</span>
+            
           </div>
-        </div>
+        </motion.div>
         </Link>
         
       ))}
     </div>
+    </>
   );
 };
 

@@ -1,3 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 * {
   box-sizing: border-box;
@@ -14,7 +17,6 @@
 }
 
 [data-theme="light"] {
-  /* --body-background: #fdfdfd; */
   --body_background: #f4f4f4;
   --body_background_2: #00000065;
   --body_color: #000;
@@ -30,7 +32,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-family: 'roboto', sans-serif;
   background: var(--body_background);
+  color: var(--body_color);
   overflow-y: scroll;
+  /* background: radial-gradient(circle, #696969, #070707); */
+
 }
 
 code {

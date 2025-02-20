@@ -29,10 +29,14 @@ const sProgrammeSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    // author:{
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'User'
-    // }
+    isActive:{
+        type: Boolean,
+        default: false,
+    },
+    author:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }
 }, {timestamps: true});
 
 const SProgramme = mongoose.model('SProgramme', sProgrammeSchema);

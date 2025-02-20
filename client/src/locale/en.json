@@ -1,0 +1,41 @@
+{
+    "hero": {
+        "title": "Building Better Future Together",
+        "learnMore": "Learn More",
+        "joinUs": "Follow Us"
+    },
+    "donate":{
+        "h2": "Changed Over",
+        "span": " 1000",
+        "p": " individuals in the community through our programs", 
+        "h2Donated": "Donate Money",
+        "pDonated": " Help us continue our mission to build better future together.",
+        "donateNow": "Donate Now",
+        "h2Volunteer": "Be a volunteer",
+        "pVolunteer": "Join our team and be a part of the change.",
+        "volunteerNow": "Volunteer"
+    },
+    "services": {
+            "mainTitle": "Our Services",
+             "eTitle": "Education",
+             "eText": "We provide free education to the children of the community. We believe that education is the key to success and we want to give every child a chance to succeed.",
+             "hTitle": "Awareness",
+             "hText": " We provide free health services to the community. We believe that health is wealth and we want to give every child a chance to succeed",
+             "fTitle": "Health",
+            "fText": "We provide free food to the community. We believe that food is the key to success and we want to give every child a chance to succeed."
+         
+    },
+    "navbar": {
+        "home": "Home",
+        "about": "About Us",
+        "services": "Services",
+        "contact": "Contact Us",
+        "news": "News",
+        "login": "Login",
+        "logout": "Logout",
+        "profile": "Profile"
+
+    }
+    
+
+}

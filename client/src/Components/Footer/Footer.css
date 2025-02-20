@@ -21,6 +21,7 @@
     font-size: 12px;
     bottom:0;
     width: 100%;
+    position: relative;
 }
 
 .footer-logo {
@@ -62,15 +63,25 @@
 }
 
 .footer-credit {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
+    position: relative;
+    padding: 0px 10px;
     background-color: var(--body_background);
     color: var(--body_color);
     bottom: 0;
     left: 0;
     width: 100%;
+}
+
+.footer-credit p {
+    text-align: center;
+}
+
+.chat-box {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 500;
+
 }
 
 @media screen and (min-width: 768px) {

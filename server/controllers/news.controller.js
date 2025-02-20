@@ -1,8 +1,6 @@
 import jwt from 'jsonwebtoken';
 import Post from '../models/Post.js';
 
-
-
 export const getnews= async (req, res) => {
     try{
         const news = await Post.find();
@@ -15,7 +13,7 @@ export const getnews= async (req, res) => {
 
 export const getSingleNews= async (req, res) => {
    const id = req.params.id
-
+    console.log(id)
    try{
       const newsChange = await Post.findById(id)
       res.status(200).json(newsChange)
@@ -26,7 +24,7 @@ export const getSingleNews= async (req, res) => {
 
 export const createNews = async (req, res) => {
     const { title, body, date, place, target } = req.body;
-    const images = req.files.map((file) => file.path);
+    const images = req.files ? req.files.map((file) => file.path) : [];
     try {
         const addPost = await Post.create({
             title,
@@ -37,8 +35,10 @@ export const createNews = async (req, res) => {
             target,
             author: req.user.id
         });
+        console.log(addPost);
         res.status(201).json(addPost);
     } catch (error) {
+        console.log(error);
         res.status(500).json({ message: error.message });
     }
 };

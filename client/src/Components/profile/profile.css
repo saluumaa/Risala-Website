@@ -1,0 +1,84 @@
+.profile-container {
+    width: 80%;
+    margin: 2rem auto 1rem auto;
+    background-color: #f9f9f9;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  .profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .profile-actions {
+    display: flex;
+    align-items: center;
+  }
+  
+  .notification-icon {
+    font-size: 1.5rem;
+    color: #fecd51;
+    margin-right: 1rem;
+  }
+  
+  .notification-badge {
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    padding: 0.2rem 0.5rem;
+    border-radius: 50%;
+    position: relative;
+    top: -10px;
+    left: -15px;
+  }
+  
+  .logout-btn {
+    display: flex;
+    align-items: center;
+    background-color: #fecd51;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .logout-btn:hover {
+    background-color: #ffb800;
+  }
+  
+  .message-section {
+    margin-bottom: 2rem;
+  }
+  
+  .message-item {
+    background-color: #fff;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .add-news-section {
+    text-align: center;
+  }
+  
+  .add-news-btn {
+    background-color: #fecd51;
+    color: white;
+    padding: 0.7rem 1.5rem;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  
+  .add-news-btn:hover {
+    background-color: #ffb800;
+  }
+  

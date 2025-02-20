@@ -1,18 +1,21 @@
 import React, {useState, useEffect} from 'react'
+import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import {FaFacebook, FaYoutube, FaTiktok} from 'react-icons/fa'
-import { fetchNews} from '../../redux/NewsSlice';
+import {FaFacebook, FaYoutube, FaTiktok, FaHeart} from 'react-icons/fa'
 import './Hero.css'
 import Donate from '../Donate/Donate'
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector} from 'react-redux';
+import { useTranslation } from 'react-i18next'
 
 const Hero = () => {
-  // const dispatch = useDispatch();
+  const [t, i18n] = useTranslation();
   const news = useSelector((state) => state.news.news);
+  const images = news.length > 0 && news[news.length - 1].images.length > 0
+  ? news[news.length - 1].images.map(image => `http://localhost:8800/${image}`)
+  : ['/hero_image.jpeg'];
 
-  const images = news.flatMap((item) => item.images > 0 ? item.images: ['/hero_image.jpeg']);
 
-  
+
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -23,37 +26,65 @@ const Hero = () => {
   }, [images.length]);
 
   return (
-    <section className='hero-wrapper' >
-			<div className='image-wrapper'>
-				<img src={
-          images[index]
-        } alt={`Organization Pictures  ${index + 1 }`} />
+    // <section className='hero-wrapper' >
+		// 	<div className='image-wrapper'>
+		// 		<img src={images[index]
+    //     } alt={`Organization Pictures  ${index + 1 }`} />
 
-        <div className='image-overlay'>
-          <p>
-           Empowering Youth Through Education and building a better future together
-            and providing a platform for the youth to develop their skills and talents.
-          </p>
-        <section className='social-icons'>
-          <div>
-          <Link to="/about"><button className='btn' style={{padding: "9px 15px"}} >Learn More</button></Link>
-          </div>
-          <div>
-          <button>Follow Us  
-          <a href='https://www.facebook.com/AlrisalaOrganization/' target='_blank' rel="noopener noreferrer" style={{paddingLeft: '10px'}} ><FaFacebook /></a>
-          <a href='https://www.tiktok.com/@alrisalaorg' target='_blank' rel="noopener noreferrer"><FaTiktok /></a>
-          <a href='https://www.youtube.com/channel/UCQ8aXs3FQxXp3zY6t9XqC6g' target='_blank' rel="noopener noreferrer"><FaYoutube /></a>
-          </button>
-          </div>
+    //     <div className='image-overlay'>
+    //       <motion.p
+    //         initial={{ opacity: 0 }}
+    //         animate={{ opacity: 1 }}
+    //         transition={{ delay: 1, duration: 1 }}>
+    //         {t('hero.title')}
+    //       </motion.p>
+    //     <motion.section className='social-icons'
+    //       initial= {{scaleY: 0}}
+    //       animate={{scaleY: 1}}
+    //       transition={{delay: 1.5}}
+    //     >
+    //       <div>
+    //       <Link to="/about"><button className='btn learn-more' style={{padding: "9px 15px"}}>{t('hero.learnMore')}</button></Link>
+    //       </div>
+    //       <div>
+         
+    //       </div>
           
-      </section>
+    //   </motion.section>
+    //     </div>
+    //   </div>
+    //   <Donate className="donate" />
+    //  </section>
+    <div className="relative min-h-64">
+      <div className="absolute inset-0">
+        <img src={images[index]
+         } alt={`Organization Pictures  ${index + 1 }`}    
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 to-blue-700/75"></div>
+      </div>
+      
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
+        <div className="text-center">
+          <FaHeart className="h-12 w-12 text-blue-400 mx-auto mb-6" />
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6">
+            Empowering Communities,<br />Building Future Leaders
+          </h1>
+          <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
+            Join us in our mission to provide education, healthcare, and sustainable development to communities in need across the globe.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button className="bg-blue-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-600 transition-colors">
+              Donate Now
+            </button>
+            <button className="bg-white text-blue-900 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
+              Volunteer With Us
+            </button>
+          </div>
         </div>
-        </div>
-      <Donate className="donate" />
-     </section>
+      </div>
+    </div>
   )
 }
-
-    
 
 export default Hero

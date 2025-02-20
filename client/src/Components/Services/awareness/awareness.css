@@ -1,0 +1,53 @@
+.awareness-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 15px;
+    color: var(--body_color);
+}
+
+.awareness-header {
+    background: url('https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=400')
+        no-repeat center center/cover;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.awareness-header a {
+    text-decoration: none;
+    color: var(--body_color);
+}
+
+.awareness-header span {
+    font-size: 2rem;
+    color: var(--primary_color);
+}
+
+.awareness-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px;
+}
+
+.awareness-goals, .awareness-methods, .awareness-impact {
+    background-color: var(--primary_color);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.awareness-goals h2, .awareness-methods h2, .awareness-impact h2 {
+    color: var(--body_color);
+}
+
+.awareness-goals p, .awareness-methods p, .awareness-impact p {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--body_color);
+}

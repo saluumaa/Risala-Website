@@ -1,35 +1,54 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
+import { motion } from 'framer-motion'
 import './Donate.css'
 import { Link } from 'react-router-dom'
 
 const Donate = () => {
+    const { t } = useTranslation();
   return (
 
-        <div className='donate-wrapper'>
-            <div className='donate-content one'>
-                <h2>Changed Over</h2>       
+        <motion.div className='donate-wrapper'
+            initial={{rotateY:-130, opacity: 0}}
+            whileInView={{rotateY: 0, opacity: 1}}
+            transition={{duration: 1}}
+        >
+            <motion.div className='donate-content one'
+                initial={{rotateX: 120, opacity: 0}}
+                animate={{rotateX: 0, opacity: 1}}
+                transition={{delay: 1, duration: 1, type: 'spring', stiffness: 150}}
+            >
+                <h2>{t('donate.h2')}</h2>       
                 <p>
-                <span style={{fontWeight:'700', fontSize: '20px', paddingRight:'5px', color: 'white'}}>1000</span>
-                individuals in the community through our programs
+                <span style={{fontWeight:'700', fontSize: '20px', paddingRight:'5px', color: 'white'}}>{t('donate.span')}</span>
+                {t('donate.p')}
                 </p>
-            </div>
-            <div className='donate-content two'>
-                <h2>Donate Money</h2>            
+            </motion.div>
+            <motion.div className='donate-content two'
+                initial={{ opacity: 0}}
+                animate={{ opacity: 1}}
+                transition={{delay: 1}}
+            >
+                <h2> {t('donate.h2Donated')} </h2>            
                 <p>
-                  Help us continue our mission to build better future together.
+                    {t('donate.pDonated')}
                 </p>
-                <button className='btn donate-btn'>Donate</button>
-            </div>
-            <div className='donate-content three'>
+                <button className='btn donate-btn'> {t('donate.donateNow')} </button>
+            </motion.div>
+            <motion.div className='donate-content three'
+                initial={{rotateX: -120, opacity: 0}}
+                animate={{rotateX: 0, opacity: 1}}
+                transition={{delay: 1, duration: 1, type: 'spring', stiffness: 150}}
+            >
                 <h2>
-                    Be a volunteer
+                   {t('donate.h2Volunteer')}
                 </h2>
                 <p>
-                    Join our team and be a part of the change.
+                    {t('donate.pVolunteer')}
                 </p>
-                <Link to='/volunteer'> <button className='btn donate-btn vol-btn'>Volunteer</button> </Link>
-            </div>
-        </div>
+                <Link to='/volunteer'> <button className='btn donate-btn vol-btn'>{t('donate.volunteerNow')}</button> </Link>
+            </motion.div>
+        </motion.div>
 
   )
 }

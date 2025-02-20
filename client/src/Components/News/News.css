@@ -2,12 +2,29 @@
 
 /* ------------ Style News component----------------- */
 
+.news-page-frame {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 20px;
+  margin-top: 40px;
+}
+
+.news-img-date {
+  display: flex;
+  align-items: center;
+}
+
+.news-img-date h5 {
+  transform: rotate(-90deg);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary_color);
+  margin-top: auto;
+  margin-left: -20px;
+  margin-bottom: 40px;
+}
+
 .news-wrapper {
-  margin-top: 1.5rem;
-  /* display: grid;
-  grid-template-columns: 1fr; */
-  padding: 10px 20px;
-  /* gap: 30px; */
   color: var(--body_color)
 }
 a.news-link {
@@ -16,63 +33,49 @@ a.news-link {
 }
 
 .post-image {
-  width: 100%;
-  height: auto;
-  margin: 5px auto;
+  max-width: 70%;
 }
 
 img.post-image {
   width: 100%;
-  height: auto;
   object-fit: cover;
-  /* padding-left: 50px; */
-  padding: 10px;
+  border-radius: 10px;
   position: relative;
 }
 
-img.post-image::after {
-  content: '';
-  position: absolute;
-  /* top: 20px;
-  left: 20px;
-  width: 100%;
-  background: var(--primary_color); */
-
-}
-
 .news-page-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px 10px;
-  /* gap: 10px; */
   color: var(--body_color);
+  margin-top: -1px;
 }
+
+
 
 .news-page-wrapper h1 {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 600;
-  color: var(--primary_color);
+  max-width: 80%;
+  margin-top: 10px;
+  color: var(--body_color);
 }
 
 .news-page-wrapper p {
   font-size: 1.2rem;
-  flex-wrap: wrap;
-  padding: 5px;
   font-weight: 400;
-  margin-top: 12px;
+  width: 80%;
   text-align: justify;
 }
 
 
-.item-body span {
-  padding-left: 5px;
+.news-readmore {
+  font-size: 18px;
   font-style: italic;
+  margin-bottom: 10px;
+  color: var(--primary_color);
 }
 
-.news-page-wrapper h5{
-  font-weight: 100;
-}
+
+
+
 
 /* ----------- ADD FORM -------------- */
 
@@ -83,7 +86,7 @@ img.post-image::after {
   color: #000
 }
 
-form {
+.add-new-form {
   display: block;
   margin: 20px auto;
   border-radius: 10px;
@@ -91,7 +94,7 @@ form {
   color: #000;
 }
 
-form input {
+.add-new-form input {
   padding: 30px 20px;
   border: none;
   border-bottom: 1px solid var(--primary_color);
@@ -159,6 +162,14 @@ input:focus, textarea:focus {
   color: var(--body_color)
 }
 
+/* .read-more {
+  position: relative;
+  display: inline;
+  font-style: italic;
+  top: -25px;
+  font-size: 16px;
+} */
+
 
 @media screen and (min-width: 768px) {
   .news-header {
@@ -167,25 +178,9 @@ input:focus, textarea:focus {
     color: var(--body_color);
     text-align: center;
     gap: 2rem;
-    width: 50%;
   }
 
-  /* .news-header h1 {
-    font-size: 2rem;
-    max-width: 80%;
-    position: relative;
-  }
-
-  .news-header-img {
-    display: block;
-  }
   
-  .news-header-img img {
-    width: 100%;
-    max-height: 30%;
-    margin-top: 28px;
-  }   */
-
   .news-page {
     margin-top: 5rem;
   }
@@ -193,29 +188,62 @@ input:focus, textarea:focus {
 
 
   /* ------------ Style News component----------------- */
-  .news-wrapper {
-    margin-top: 5rem;
+
+  .news-page-frame {
     display: grid;
-    grid-template-columns: 0.8fr 1fr;
-    gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    gap: 20px;
+    margin-top: 85px;
   }
 
-  /* .item-img {
-    width: 100%;
+  .news-wrapper {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--primary_color);
     height: 100%;
-    float: right;
-    margin-left: auto;
-  } */
+    border-radius: 10px;
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  };
+
+  .post-image {
+    width: 100%;
+  }
+
+
+  img.post-image {
+    min-width: 100%;
+    max-height: 600px;
+ 
+  }
+
+  .news-img-date {
+     flex-direction: column;
+     align-items: flex-start;
+     width: 100%;
+  }
+
+  .news-img-date h5 {
+    transform: rotate(0deg);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary_color);
+    margin-right: auto;
+    margin-left: 0;
+    padding-left: 5px;
+  }
 
   .news-page-wrapper {
-    text-align: center;
+    margin-top: -40px;
+    padding-left: 5px;
   }
 
-  .news-page-wrapper p {
-    text-align: center;
-    padding: 5px 15px;
-    width: 80%;
+  .news-page-wrapper h1, .news-page-wrapper p {
+    width: 100%;
+    padding-right: 5px;
   }
+
 
   .add-btn {
     margin-top: 5rem;
@@ -233,12 +261,18 @@ input:focus, textarea:focus {
   
   .news-header {
     margin-top: 12rem;
-    display: flex;
     color: var(--body_color);
     text-align: center;
     gap: 2rem;
-    width: 50%;
   }
+
+  .news-page-frame {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+    gap: 20px;
+  }
+
 
   
 }

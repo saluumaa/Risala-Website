@@ -1,89 +1,50 @@
+import Chat from '../models/Chat.js';
 import Message from '../models/Message.js';
-import User from '../models/User.js';
+import mongoose from 'mongoose';
 
-// Send a message from user to admin
-export const sendMessage = async (req, res) => {
-    const { recipientId, text } = req.body;
-    const senderId = req.user.id;
+export const addMessage = async (req, res) => {
+    const tokenUserId = req.user.id;  
+    const { chatId } = req.params;    // Get chatId from request params
+    const { text } = req.body;
 
     try {
-
-        const recipient = await User.findById(recipientId);
-        if (!recipient || recipient.role !== 'admin') {
-            return res.status(404).json({ message: 'Admin not found' });
+        // Validate chatId
+        if (!mongoose.Types.ObjectId.isValid(chatId)) {
+            return res.status(400).json({ message: "Invalid chat ID" });
         }
 
-        // Create and save the message
+        // Find the chat that the user is part of
+        const chat = await Chat.findOne({
+            _id: chatId,
+            users: {
+                $in: [tokenUserId],
+            }
+        });
+
+        if (!chat) {
+            return res.status(404).json({ message: "You are not part of this chat" });
+        }
+
+        // Create a new message
         const newMessage = new Message({
-            chatId: recipientId, 
-            sender: senderId,
-            recipient: recipientId,
             text,
+            userId: tokenUserId,
+            chatId,
         });
 
-        const savedMessage = await newMessage.save();
-        console.log(savedMessage);
-        res.status(201).json(savedMessage);
+        await newMessage.save();
+
+        // Add the message to the chat
+        chat.messages.push(newMessage._id);
+        chat.seenBy = [tokenUserId];  // Reset seenBy to the sender
+        await chat.save();
+
+        console.log('userId:', tokenUserId);
+        console.log('chatId:', chatId);
+
+        res.status(200).json(newMessage);
     } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-};
-
-// Admin responds to a message
-export const respondMessage = async (req, res) => {
-    const { chatId, text } = req.body;
-    const senderId = req.user.id; // Admin's ID
-
-    try {
-        const recipient = await User.findById(chatId); // User who sent the original message
-
-        if (!recipient) {
-            return res.status(404).json({ message: 'User not found' });
-        }
-
-        const responseMessage = new Message({
-            chatId,
-            sender: senderId,
-            recipient: chatId,
-            text,
-        });
-
-        const savedResponse = await responseMessage.save();
-
-        res.status(201).json(savedResponse);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-};
-
-// Fetch all messages for the admin
-export const fetchAllMessages = async (req, res) => {
-    try {
-        const messages = await Message.find({ recipient: req.user.id }).populate('sender', 'username email');
-
-        res.status(200).json(messages);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-};
-
-// Fetch a specific conversation by chatId for a user
-export const fetchMessageById = async (req, res) => {
-    const chatId = req.params.id;
-    const userId = req.user.id;
-
-    try {
-        const messages = await Message.find({
-            chatId,
-            $or: [{ sender: userId }, { recipient: userId }]
-        }).populate('sender recipient', 'username email');
-
-        if (messages.length === 0) {
-            return res.status(404).json({ message: 'No messages found for this chat' });
-        }
-
-        res.status(200).json(messages);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
+        console.error('Error adding message:', error);
+        res.status(500).json({ message: "Failed to add message" });
     }
 };

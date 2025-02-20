@@ -1,0 +1,132 @@
+.chat-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 100%;
+    width: 100%; 
+    /* border-radius: 15px; */
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+}
+
+
+.chat-icon {
+    display: flex;
+    /* background-color: var(--body_background); */
+    background: none;
+    /* color: var(--body_color); */
+    font-size: 13px;
+    padding: 20px;
+    cursor: pointer;
+    border: none;
+    z-index: 1000;
+}
+
+.chat-btn {
+    border: none;
+    background: inherit;
+}
+
+.fa-wahatsap {
+    color: #25d366;
+    font-size: 70px;
+    transform: rotate(10deg);
+}
+
+.chat-btn span {
+    color: var(--body_color);
+    text-transform: uppercase;
+    font-style: italic;
+}
+
+.chat-icon.disabled {
+    background-color: grey; 
+    cursor: not-allowed;
+    display: none;
+
+}
+
+.chat-box {
+    background-color: #f3eff3;
+    margin-bottom: 4rem;
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    width: max-content;
+    border-radius: 10px;
+}
+
+
+.chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--primary_color);
+    padding: 5px 10px 5px 5px;
+    width: 100%;
+}
+
+.chat-header-whatsapp, .chat-header-chevron {
+    font-size: 1.5rem;
+    color: #f3eff3;
+}
+
+.chat-header button {
+    background-color: inherit;
+    border: none;
+}
+
+.chat-body p {
+    padding: 5px 15px 5rem 5px;
+    border: 2px solid var(--primary-color);
+
+}
+
+.chat-footer {
+    display: flex;
+    margin-top: auto;
+    padding-bottom: 2px;
+    
+    
+}
+
+.chat-footer .message-input {
+    position: relative;
+    padding-left: 20px;
+    width: 100%;
+    margin-left: 5px;
+    outline: none;
+    border: 1px solid var(--primary_color);
+    border-radius: 5px;
+    
+}
+
+.smile-btn {
+    position: absolute;
+    left: 6px;
+    bottom: 5px;
+    color: var(--primary_color);
+    border: none;
+    
+}
+
+.paper-btn {
+    background-color: var(--primary_color);
+    clip-path: circle(50%);
+    padding: 5px;
+    color: #f3eff3;
+    border: none;
+    margin: 0 5px 0 5px;
+}
+.chat-box-close button{
+    border: none;
+    border-radius: 50%;
+    background-color: var(--body_color);
+    color: var(--primary_color);
+    padding: 15px;
+}
+
+.chatbox-close {
+   font-size: 1.7rem;
+   clip-path: circle(50);
+}

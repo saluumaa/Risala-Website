@@ -10,7 +10,7 @@ const postSchema = new mongoose.Schema({
     },
     images: {
         type: Array,
-        required: true,
+        // required: true,
     }, 
     date: {
         type: Date,

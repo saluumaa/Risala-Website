@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   currentUser: JSON.parse(localStorage.getItem('user')) || null,
+  isAuthenticated: JSON.parse(localStorage.getItem('isAuthenticated')) ?? false,
 };
 
 const usersSlice = createSlice({
@@ -11,6 +12,7 @@ const usersSlice = createSlice({
   reducers: {
     setUser: (state, action) => {
       state.currentUser = action.payload;
+      state.isAuthenticated = true;
       localStorage.setItem('user', JSON.stringify(action.payload));
     },
     logout: (state) => {

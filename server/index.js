@@ -10,6 +10,7 @@ import authRoute from './routes/auth.route.js';
 import newsRoute from './routes/news.route.js';
 import messageRoute from './routes/message.route.js';
 import sypRoute from './routes/sProgramme.route.js';
+import chatRoute from './routes/chat.route.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -28,6 +29,10 @@ app.use(cors({
 app.use(cookieParser());
 
 
+app.get('/', (req, res) => {
+    res.send('Hello to SYP API');
+});
+
 // Serve static files from the uploads directory
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
@@ -35,9 +40,10 @@ app.use('/api/users', userRoute);
 app.use('/api/auth', authRoute);
 app.use('/api/news', newsRoute);
 app.use('/api/messages', messageRoute);
+app.use('/api/chats', chatRoute);
 app.use('/api/syp', sypRoute);
 
 
 app.listen(8800, () => {
-    console.log('Server is running on http://localhost:8800');
+    console.log('Server is running on http://localhost:8000');
 });
