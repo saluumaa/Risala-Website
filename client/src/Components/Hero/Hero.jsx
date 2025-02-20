@@ -61,7 +61,7 @@ const Hero = () => {
          } alt={`Organization Pictures  ${index + 1 }`}    
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-1000/90 to-blue-700/75"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 to-blue-700/75"></div>
       </div>
       
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">

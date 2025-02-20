@@ -37,7 +37,6 @@ mongoose.connect(mongoURI, {
     console.log(err);
 })
 
-console.log('Database URI:', process.env.DATABASE_URI);
 
 app.use(cors({
     origin: process.env.CLIENT_URL,
