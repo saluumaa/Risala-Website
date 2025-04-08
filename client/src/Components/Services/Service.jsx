@@ -27,7 +27,7 @@ const Service = () => {
         <div className='services-content'>
           <Link to='/education'>
           <div className='services-img'>
-            <img src='/health_section.jpg' alt='health sector' />
+            <img src='/education.jpg' alt='health sector' />
           </div>
           <div className='services-text'>
           <h2>
@@ -42,7 +42,7 @@ const Service = () => {
         <div className='services-content'>
           <Link to='/awareness'>
          <div className='services-img'>
-            <img src='/health_section.jpg' alt='health sector' />
+            <img src='/livelihood.jpg' alt='health sector' />
           </div>
           <div className='services-text'>
           <h2>{t('services.hTitle')} </h2>
@@ -55,7 +55,7 @@ const Service = () => {
         <div className='services-content'>
           <Link to='/empowerment'>
         <div className='services-img'>
-            <img src='/health_section.jpg' alt='health sector' />
+            <img src='/health.jpg' alt='health sector' />
           </div>
           <div className='services-text'>
           <h2>

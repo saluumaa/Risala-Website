@@ -162,9 +162,15 @@
 
 import { Link } from 'react-router-dom';
 import { FaAngleDoubleRight } from 'react-icons/fa';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';  // Import Framer Motion
+import { motion } from 'framer-motion'; 
+import Slider from "react-slick";
 import apiRequest from '../../../utils/apiRequest';
+
+
+
 
 const Education = () => {
   const [isRegistrationActive, setIsRegistrationActive] = useState(false);
@@ -181,13 +187,43 @@ const Education = () => {
     fetchStatus();
   }, []);
 
-  console.log(isRegistrationActive);
+  
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 600,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 6000,
+    arrows: false,
+  };
+
+  const testimonials = [
+    {
+      name: "Hassan M.",
+      image: "https://images.pexels.com/photos/7620418/pexels-photo-7620418.jpeg?auto=compress&cs=tinysrgb&w=400",
+      text: "The summer programme was honestly the best part of my year. We played team sports, visited beautiful places, and even did fun group challenges that helped us think critically. I met new friends and discovered what I love most — learning through experience. I’m more confident in school now, and I can’t wait for next summer!"
+    },
+    {
+      name: "Ayaan A.",
+      image: "https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?auto=compress&cs=tinysrgb&w=400",
+      text: "Before joining, I thought summer would be boring. But this programme totally changed that. I learned how to work in a team and gained leadership skills without even realizing it at first. The trips were amazing, and the mentors were so kind and encouraging!"
+    },
+    {
+      name: "Ifrah B.",
+      image: "https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=400",
+      text: "I used to be shy, but this programme helped me speak up and express myself better. From debates to art and sports, every activity made me feel like I mattered. It really gave me a boost in confidence and made me look forward to learning again."
+    }
+  ];
+  
+
 
   return (
     <div className="education-container text-bodyColor bg-bodyBackground py-16 px-6">
       <div 
-        className="education-header flex items-center justify-center space-x-4 text-xl text-primary font-bold bg-cover bg-center p-6 h-52"
-        style={{ backgroundImage: 'url("https://images.pexels.com/photos/1181395/pexels-photo-1181395.jpeg?auto=compress&cs=tinysrgb&w=400")' }}
+        className="education-header flex items-center justify-center space-x-4 text-xl text-primary font-bold bg-cover bg-center p-6 h-60 rounded-lg shadow-lg"
+        style={{ backgroundImage: 'url("/education.jpg")' }}
       >
         <Link to="/" className="hover:text-blue-800">
           <h1>Home</h1>
@@ -195,9 +231,9 @@ const Education = () => {
         <span className="text-gray-600">
           <FaAngleDoubleRight />
         </span>
-        <Link to="/education" className="hover:text-blue-800">
+        {/* <Link to="/education" className="hover:text-blue-800"> */}
           <h1>Education</h1>
-        </Link>
+        {/* </Link> */}
       </div>
 
 
@@ -209,9 +245,9 @@ const Education = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-2xl font-semibold text-white">Our Programmes</h2>
+            <h2 className="text-2xl font-semibold text-white">Our Education Programme</h2>
             <p className="text-lg text-white mt-4">
-              We offer a wide range of programmes to help students achieve their goals. We also provide a range of support services to help students succeed.
+              Our purpose is to enhance the awareness students middle- and high school through intensive trainings, skill-building, and show them creative ways to study
             </p>
           </motion.div>
 
@@ -251,14 +287,14 @@ const Education = () => {
       >
         <div className="s-header flex items-center space-x-8">
           <img
-            src="https://images.pexels.com/photos/5212345/pexels-photo-5212345.jpeg?auto=compress&cs=tinysrgb&w=400"
+            src="/summer.jpg"
             alt="summer"
             className="rounded-lg w-1/2"
           />
           <div className="s-desc w-1/2">
             <h2 className="text-3xl font-semibold">Summer Programme</h2>
             <p className="mt-4 text-lg ">
-              The summer programme is for students who want to learn new skills and gain experience in a short period of time.
+              The summer programme is for for students between 11-19, those benefit a lot of brainstorming activities, sport activities and trip to wonderful palaces which enhance their experience and left a great impression that result in their educational journey.
             </p>
           </div>
         </div>
@@ -332,38 +368,31 @@ const Education = () => {
       </motion.div>
 
       <motion.div
-        className="testimonials mt-16 bg-black p-8 rounded-lg shadow-lg"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
-      >
-        <div className="testimonials-header text-center mb-8">
-          <h2 className="text-3xl font-semibold text-white">Our Beneficiary Testimonials</h2>
-        </div>
-        <div className="testimonials-content grid grid-cols-1 md:grid-cols-3 gap-8">
-          {[1, 2, 3].map((_, index) => (
-            <motion.div
-              key={index}
-              className="testimonial bg-white p-6 rounded-lg shadow-md"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6 }}
-            >
-              <img
-                src="https://images.pexels.com/photos/267491/pexels-photo-267491.jpeg?auto=compress&cs=tinysrgb&w=400"
-                alt="testimonial"
-                className="rounded-full w-24 h-24 mx-auto"
-              />
-              <div className="testimonial-des mt-4 text-center">
-                <h3 className="text-xl font-semibold text-gray-800">Testimonial Name</h3>
-                <p className="mt-2 text-lg text-gray-600">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
+      className=" text-bodyColor p-8  mx-auto mt-16 max-w-xl"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6 }}
+     >
+      <div className="testimonials-header text-center mb-8">
+        <h2 className="text-3xl font-semibold ">Our Beneficiary Testimonials</h2>
+      </div>
+
+      <Slider {...settings}>
+        {testimonials.map((testimonial, index) => (
+          <div key={index} className=" flex justify-center items-center p-6 rounded-lg shadow-md max-w-xl mx-auto">
+            <img
+              src={testimonial.image}
+              alt={`Testimonial by ${testimonial.name}`}
+              className="rounded-full w-24 h-24 mx-auto"
+            />
+            <div className="testimonial-des mt-4 text-center mx-auto">
+              <h3 className="text-xl font-semibold ">{testimonial.name}</h3>
+              <p className="mt-2 text-lg ">"{testimonial.text}"</p>
+            </div>
+          </div>
+        ))}
+      </Slider>
+    </motion.div>
     </div>
   );
 };

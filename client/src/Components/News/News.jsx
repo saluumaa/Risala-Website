@@ -36,7 +36,7 @@ const News = () => {
           transition={{ delay: 0.2, duration: 0.5 }}
         >
           <div className="news-img-date">
-              <img src={`http://localhost:8800/${item.images[0]}`}
+              <img src={`https://risala-website.onrender.com/${item.images[0]}`}
               alt='news' className='post-image' />
               {/* <div className='date'> */}
                 <h5>

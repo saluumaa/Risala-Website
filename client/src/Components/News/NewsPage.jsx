@@ -60,8 +60,8 @@ const NewsPage = () => {
       >
         {news.slice().reverse().map((item) => (
           <motion.div
-            className="news-content flex-shrink-0 w-full  lg:w-1/3 p-4"
-            key={item.id}
+            className="news-content flex-shrink-0 w-full p-4"
+            key={item._id}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.5 }}
@@ -71,8 +71,8 @@ const NewsPage = () => {
               {/* Image on the left */}
               <div className="relative ">
                 <img
-                  className="w-full h-[400px] object-cover rounded-2xl"
-                  src={`http://localhost:8800/${item.images[0]}`}
+                  className="w-full  object-cover rounded-2xl"
+                  src={`https://risala-website.onrender.com/${item.images[0]}`}
                   alt="news"
                 />
               </div>
@@ -99,7 +99,7 @@ const NewsPage = () => {
                   <h3 className="text-2xl font-bold hover:text-green-600 transition-colors duration-300">
                     {item.title}
                   </h3>
-                  <p className="mt-2 w-[80%]" dangerouslySetInnerHTML={{ __html: item.body.slice(0, 120) }}></p>
+                  {/* <p className="mt-2 w-[80%]" dangerouslySetInnerHTML={{ __html: item.body.slice(0, 120) }}></p> */}
                   <button className="mt-4 flex items-center text-bodyColor-500 hover:text-blue-600 transition-colors duration-300">
                     Read more
                     <span className="read-more-arrow ml-2">
