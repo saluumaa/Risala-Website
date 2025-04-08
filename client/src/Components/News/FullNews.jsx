@@ -68,7 +68,6 @@ const FullNews = () => {
     <div className='news-image'>
       <div className='main-image'>
         <img src= {`https://risala-website.onrender.com/${selectedImage}`}
-        // <img src= {`http://localhost:8800/${selectedImage}`}
          alt='news' className='news-item-img-big' />
       </div>
       <motion.div className='image-thumbnails'
@@ -80,7 +79,6 @@ const FullNews = () => {
           <img 
             key={index} 
             src={`https://risala-website.onrender.com/${image}`}
-            // src={`http://localhost:8800/${image}`}
             alt='news' 
             className='news-item-img' 
             onClick={() => handleImageClick(image)} 
