@@ -46,8 +46,8 @@ const Health = () => {
     <div className="health-container bg-bodyBackground text-bodyColor ">
       {/* Header Section */}
       <div 
-        className="education-header flex items-center justify-center space-x-4 text-xl text-primary font-bold bg-cover bg-center p-6 h-52"
-        style={{ backgroundImage: 'url("https://images.pexels.com/photos/1181395/pexels-photo-1181395.jpeg?auto=compress&cs=tinysrgb&w=400")' }}
+        className="education-header flex items-center justify-center space-x-4 text-xl text-primary font-bold bg-cover bg-center p-6 h-60 rounded-lg shadow-lg"
+        style={{ backgroundImage: 'url("/health.jpg")' }}
       >
         <Link to="/" className="hover:text-green-300">
           <h1>Home</h1>
@@ -66,7 +66,7 @@ const Health = () => {
         <div className="health-services mb-12">
           <h2 className="text-3xl font-semibold mb-4">Health Services</h2>
           <p className="text-lg text-gray-600 leading-relaxed">
-            We provide accessible health services to ensure everyone has the support they need. From general health checkups to specialized care, we offer a wide range of services designed to improve health outcomes for all individuals.
+            We provide accessible health services to improve health awareness, encourage a healthy lifestyle and promote community well-being through medical conveys and health education
           </p>
         </div>
 

@@ -9,6 +9,8 @@ import './News.css';
 const AddNewNews = () => {
   const [body, setBody] = useState('');
   const [imageFile, setImageFile] = useState([]); 
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const user = useSelector((state) => state.user.currentUser);
   const navigate = useNavigate()
@@ -41,11 +43,14 @@ const AddNewNews = () => {
         }
       });
       if(response.status === 201) {
-        alert('News added successfully');
+        setSuccessMessage('News added successfully!');
+        setErrorMessage('');
         navigate('/news');
       }
     } catch (error) {
       console.error('Add news failed:', error);
+      setErrorMessage('Failed to add news. Please try again.');
+      setSuccessMessage('');
     }
   }
 
@@ -71,6 +76,9 @@ const AddNewNews = () => {
           style={{ backgroundColor: 'white', color: 'black', fontWeight: 'bold', marginTop: '20px' }}>
           Add News
         </button>
+
+        {successMessage && <p className='text-green-600 text-center text-xl'>{successMessage}</p>}
+        {errorMessage && <p className='text-red-600 text-center text-xl'>{errorMessage}</p>}
       </form>
     </div>
   );

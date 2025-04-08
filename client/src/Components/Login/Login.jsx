@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import apiRequest from '../../utils/apiRequest';
 import { useNavigate, Link } from 'react-router-dom';
@@ -46,17 +46,50 @@ const Login = () => {
     }
   };
 
+  const useIsMobile = () => {
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  
+    useEffect(() => {
+      const handleResize = () => setIsMobile(window.innerWidth < 768);
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }, []);
+  
+    return isMobile;
+  };
+
+  const isMobile = useIsMobile();
+  const radiusLoginMobile = '0px 200px 0px 200px';
+  const radiusRegisterMobile = '0px 0px 200px 200px';
+
+  const radiusLoginDesktop = '0px 200px 0px 200px';
+  const radiusRegisterDesktop = '0px 0px 300px 300px';
+
   return (
-    <div className="flex flex-col md:flex-row items-center h-screen bg-bodyBackground overflow-hidden">
-      {/* Left section with welcome message and login/register link */}
+    <div className=" flex flex-col md:flex-row items-center h-screen bg-bodyBackground overflow-hidden">
+      {/* Left section with welcome message and login/register link, and top section for mobile */}
       <motion.div
-        className="bg-primary w-full md:w-1/2 h-1/2 md:h-full flex flex-col justify-center items-center rounded-br-[100px] rounded-bl-[100px] md:rounded-bl-none md:rounded-br-[200px] md:rounded-tr-[200px]
+        className="mt-24 bg-primary w-full md:w-1/2 h-1/2 md:h-full flex flex-col justify-center items-center  md:rounded-bl-none md:rounded-br-[200px] md:rounded-tr-[200px]
         "
-        initial={{ x: 0 }}
-        animate={{ x: isRegister ? '100%' : 0 }}
+        initial={{ x: 0, y: 0}}
+        animate={{
+          x: isMobile ? 0 : isRegister ? '100%' : 0,
+          y: isMobile ? (isRegister ? '100%' : 0) : 0,
+          borderRadius: isMobile
+            ? isRegister
+              ? radiusRegisterMobile
+              : radiusLoginMobile
+            : isRegister
+            ? radiusRegisterDesktop
+            : radiusLoginDesktop
+        }}
+        // animate={{
+        //   x: isMobile ? 0 : isRegister ? '100%' : 0,
+        //   y: isMobile ? (isRegister ? '100%' : 0) : 0
+        // }}
         transition={{ duration: 0.5 }}
       >
-        <h1 className="text-4xl font-bold text-white text-center">Welcome to our community</h1>
+        <h1 className="text-4xl  font-bold text-white text-center">Welcome to our community</h1>
         <motion.div
           className="text-center text-white mt-6"
           initial={{ opacity: 0 }}
@@ -91,9 +124,12 @@ const Login = () => {
 
       {/* Right section with the form taking the full width */}
       <motion.div
-        className="w-full md:w-1/2 h-1/2 md:h-full shadow-lg rounded-lg p-8 flex flex-col justify-center"
+        className=" w-full md:w-1/2 h-1/2 md:h-full shadow-lg rounded-lg p-8 flex flex-col justify-center"
         initial={{ x: 0 }}
-        animate={{ x: isRegister ? '-100%' : 0 }}
+        animate={{
+          x: isMobile ? 0 : isRegister ? '-100%' : 0,
+          y: isMobile ? (isRegister ? '-100%' : 0) : 0
+        }}
         transition={{ duration: 0.5 }}
       >
         <h2 className="text-2xl font-bold text-center mb-6 text-primary">

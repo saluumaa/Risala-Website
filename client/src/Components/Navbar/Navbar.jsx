@@ -26,17 +26,6 @@ const Navbar = () => {
     setDropdownOpen(false);
   };
 
-  // const toggleServicesDropdown = () => {
-  //   setServicesDropdownVisible(!isServicesDropdownVisible);
-  // };
-
-  // const handleMouseEnter = () => {
-  //   setServicesDropdownVisible(true);
-  // };
-
-  // const handleMouseLeave = () => {
-  //   setServicesDropdownVisible(true);
-  // };
 
   const handleLogout = () => {
     dispatch(logout());
@@ -101,9 +90,9 @@ const Navbar = () => {
               <button className="dropdown-toggle">{t('navbar.services')}</button>
               {isDropdownOpen && (
                 <div className="dropdown-menu">
-                  <Link to="/awareness" onClick={handleLinkClick}>Health</Link>
-                  <Link to="/education" onClick={handleLinkClick}>Education</Link>
-                  <Link to="/empowerment" onClick={handleLinkClick}>Women Empowerment</Link>
+                  <Link to="/awareness" onClick={handleLinkClick}>{t('navbar.LService')}</Link>
+                  <Link to="/education" onClick={handleLinkClick}>{t('navbar.EService')}</Link>
+                  <Link to="/empowerment" onClick={handleLinkClick}> {t('navbar.HService')}</Link>
                 </div>
               )}
             </div>
@@ -171,11 +160,15 @@ const Navbar = () => {
                   <button className='logout' onClick={handleLogout}>{t('navbar.logout')}</button>
                 )
               )}
-          <ThemeToggle />
+
+          {i18n.language === 'en' ? <button onClick={() => i18n.changeLanguage('ar')} className='lang-btns'>AR</button> : 
+            <button onClick={() => i18n.changeLanguage('en')} className='lang-btns'>EN</button>}
           </div>
          <section className='fa-bars'>
            <FaBars onClick={handleClick} className='hamburger' />
            </section>
+
+           
          </div>
         }
 

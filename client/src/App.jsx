@@ -21,6 +21,7 @@ import SummerYouth from './Components/summerPrograme/SummerYouth';
 import store from './redux/store';
 import Profile from './Components/profile/Profile';
 import Chat from './Components/chat/Chat';
+import Donate from './Components/Donate/Donate';
 
 function App() {
 
@@ -46,6 +47,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/summerYouth" element={<SummerYouth />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/donate" element={<Donate />} />
         </Routes>
         <Footer />
       </BrowserRouter>

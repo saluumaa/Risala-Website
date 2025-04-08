@@ -186,12 +186,12 @@ const Profile = () => {
     }
   }, [currentUser]);
 
-  console.log('Registered students:', registeredStudents);
+  // console.log('Registered students:', registeredStudents);
 
   return (
     <div className="profile-container max-w-4xl mx-auto p-6 bg-gray-100 rounded-lg shadow-md">
       {/* Profile Header */}
-      <div className="profile-header flex justify-between items-center  mb-6">
+      <div className="profile-header flex justify-between items-center pt-9 mb-6">
         <h1 className="text-2xl font-bold text-blue-600">
           Welcome, {currentUser.username}
         </h1>

@@ -135,13 +135,13 @@ input:focus, textarea:focus {
 .add-btn button {
   border: none;
   background: transparent;
-  padding: 10px;
+  margin-top: 3rem;
+  /* padding: 10px; */
   font-size: 1.5rem;
   color: var(--body_color);
 }
 
 .add-btn {
-  margin-top: 3rem;
   text-align: center;
   width: 50%;
   display: flex;
@@ -154,11 +154,11 @@ input:focus, textarea:focus {
   font-weight: 600;
   cursor: pointer;
   transition: background 0.3s ease;
-  margin: auto;
+  /* margin: auto; */
 }
 
 .news-page-wrapper button:hover, .add-btn:hover, .submit-btn:hover, button.del-btn:hover {
-  background: #000;
+  background: var(--primary_color);
   color: var(--body_color)
 }
 

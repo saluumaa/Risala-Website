@@ -44,10 +44,10 @@ import { FaAngleDoubleRight } from 'react-icons/fa';
 
 const Awareness = () => {
   return (
-    <div className="awareness-container bg-white text-gray-800">
+    <div className="awareness-container bg-bodyBackground text-bodyColor">
       <div 
-        className="education-header flex items-center justify-center space-x-4 text-xl text-primary font-bold bg-cover bg-center p-6 h-52"
-        style={{ backgroundImage: 'url("https://images.pexels.com/photos/1181395/pexels-photo-1181395.jpeg?auto=compress&cs=tinysrgb&w=400")' }}
+        className="education-header flex items-center justify-center space-x-4 text-xl text-white font-bold bg-cover bg-center p-6 h-60 rounded-lg shadow-lg"
+        style={{ backgroundImage: 'url("/livelihood.jpg")' }}
       >
         <Link to="/" className="hover:text-blue-300">
           <h1>Home</h1>
@@ -56,29 +56,29 @@ const Awareness = () => {
           <FaAngleDoubleRight />
         </span>
         <Link to="/awareness" className="hover:text-blue-300">
-          <h1>Awareness</h1>
+          <h1>Livelihood</h1>
         </Link>
       </div>
 
       <div className="awareness-content p-6">
         <div className="awareness-goals mb-12">
-          <h2 className="text-3xl font-semibold mb-4">Our Awareness Programs</h2>
-          <p className="text-lg text-gray-600 leading-relaxed">
-            We aim to increase awareness on important social issues through education, active engagement, and partnerships with local communities. Our programs are designed to empower individuals with the knowledge they need to make informed decisions and inspire positive social change.
+          <h2 className="text-3xl font-semibold mb-4">Our Livelihood Programs</h2>
+          <p className="text-lg leading-relaxed">
+           we aim to empowering vulnerable groups with necessary aid like food aid during Ramadan and Eid ceremony and cloth aid during winter season
           </p>
         </div>
 
         <div className="awareness-methods mb-12">
           <h2 className="text-3xl font-semibold mb-4">Our Methods</h2>
-          <p className="text-lg text-gray-600 leading-relaxed">
-            We utilize various methods to spread awareness, including workshops, community events, digital campaigns, and educational materials. These approaches are tailored to reach diverse audiences and encourage participation at all levels of engagement.
+          <p className="text-lg leading-relaxed">
+            We utilize workshops, community events, and educational materials to spread awareness and foster change. Our approach is participatory, ensuring that the voices of those we serve are heard and valued.
           </p>
         </div>
 
         <div className="awareness-impact mb-12">
           <h2 className="text-3xl font-semibold mb-4">Our Impact</h2>
-          <p className="text-lg text-gray-600 leading-relaxed">
-            Over the years, we’ve successfully reached thousands of individuals and communities, empowering them with knowledge on health, rights, and environmental issues. Our work has sparked social change, promoted sustainability, and improved the quality of life for many.
+          <p className="text-lg  leading-relaxed">
+            Over the years, we’ve empowered communities with knowledge on health, rights, and environmental issues. Our initiatives have led to increased awareness and active participation in social change efforts.
           </p>
         </div>
 

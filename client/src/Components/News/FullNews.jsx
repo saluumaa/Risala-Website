@@ -67,7 +67,8 @@ const FullNews = () => {
     <div className='full-news-wrapper'>
     <div className='news-image'>
       <div className='main-image'>
-        <img src= {`http://localhost:8800/${selectedImage}`}
+        <img src= {`https://risala-website.onrender.com/${selectedImage}`}
+        // <img src= {`http://localhost:8800/${selectedImage}`}
          alt='news' className='news-item-img-big' />
       </div>
       <motion.div className='image-thumbnails'
@@ -78,7 +79,8 @@ const FullNews = () => {
         {newsInfo?.images.length > 0 && newsInfo.images.map((image, index) => (
           <img 
             key={index} 
-            src={`http://localhost:8800/${image}`}
+            src={`https://risala-website.onrender.com/${image}`}
+            // src={`http://localhost:8800/${image}`}
             alt='news' 
             className='news-item-img' 
             onClick={() => handleImageClick(image)} 

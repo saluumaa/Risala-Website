@@ -136,6 +136,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Award } from 'react-feather';
+import { useTranslation } from 'react-i18next';
 
 // const achievements = [
 //   '5000+ Lives Impacted',
@@ -151,6 +152,8 @@ const teamMembers = [
 ];
 
 const About = () => {
+   const [t, i18n] = useTranslation();
+
   return (
     <div className="max-w-6xl mx-auto px-6 py-12 text-bodyColor bg-bodyBackground">
       {/* About Section */}
@@ -161,7 +164,7 @@ const About = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1 }}
         >
-          <img src="/about_image.PNG" alt="About Us" className="rounded-lg shadow-lg w-full" />
+          <img src="/education2.jpg" alt="About Us" className="rounded-lg shadow-lg w-full" />
         </motion.div>
         <motion.div
           className="md:w-1/2"
@@ -169,11 +172,11 @@ const About = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          <h1 className="text-4xl font-bold mb-4">Get to Know Us</h1>
+          <h1 className="text-4xl font-bold mb-4">{t('about.title')}</h1>
           <p className="text-lg leading-relaxed">
-            Al-Risala Organization is a non-profit organization that focuses on education and social activities.
-            Established in 2017, we have been active in education, social, and religious fields, empowering communities worldwide.
-          </p>
+            {t('about.description')}
+           </p>
+          
         </motion.div>
       </div>
 
@@ -198,8 +201,10 @@ const About = () => {
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-2xl font-semibold mb-3 text-primary">Our Vision</h2>
-          <p>Creating a world where everyone has access to education and opportunities for growth.</p>
+          <h2 className="text-2xl font-semibold mb-3 text-primary"> {t('about.vision')}</h2>
+          <p>
+            {t('about.visionText')}
+          </p>
         </motion.div>
 
         <motion.div className="p-6 bg-gray-200 rounded-lg shadow-md"
@@ -207,8 +212,8 @@ const About = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.7 }}
         >
-          <h2 className="text-2xl font-semibold mb-3 text-primary">Our Mission</h2>
-          <p>To empower communities through sustainable development and education.</p>
+          <h2 className="text-2xl font-semibold mb-3 text-primary">{t('about.mission')}</h2>
+          <p> {t('about.missionText')} </p>
         </motion.div>
 
         <motion.div className="p-6 bg-gray-300 rounded-lg shadow-md"
@@ -216,22 +221,25 @@ const About = () => {
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-2xl font-semibold mb-3 text-primary">Our Values</h2>
-          <p>Integrity, inclusivity, and commitment to positive change.</p>
+          <h2 className="text-2xl font-semibold mb-3 text-primary"> {t('about.values')}</h2>
+          <p> {t('about.valuesText')} </p>
         </motion.div>
       </div>
 
       {/* Organization Hierarchy */}
       <div className="text-center mt-16">
         <motion.h2 
-          className="text-3xl font-bold mb-6"
+          className="text-4xl font-bold mb-6"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          Organization Hierarchy
+          {t('about.hierarchy')}
+          <span className="block mt-4 text-sm border-b-2 border-primary w-full mx-auto">
+             {t('about.hierarchyText')}
+          </span>
         </motion.h2>
-        <img src="/hierarchy.png" alt="Hierarchy" className="mx-auto rounded-lg shadow-lg" />
+        <img src="/risalaChart.png" alt="Hierarchy" className="mx-auto rounded-lg shadow-lg" />
       </div>
 
       {/* Team Section */}
