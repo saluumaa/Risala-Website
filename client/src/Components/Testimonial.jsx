@@ -8,9 +8,9 @@ const Testimonials = () => {
   return (
     <motion.section
       className="py-16 text-bodyColor bg-bodyBackground text-center"
-      initial={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: 150 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
+      transition={{ duration: 0.5, delay: 0.3 }}
     >
       <div className="flex items-center gap-3">
         <span className="w-[200px] h-1 bg-blue-500 z-10"></span>

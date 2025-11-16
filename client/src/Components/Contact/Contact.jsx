@@ -78,14 +78,15 @@
 // export default Contact
 
 
+
 import React from 'react';
 import { MapPin, Phone, Mail, Clock, Facebook, Youtube, Twitter } from 'react-feather';
 import ContactForm from './ContactForm';
 
 export default function ContactSection() {
   return (
-    <section className="py-20 text-bodyColor" id="contact">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="max-w-5xl mx-auto py-20 text-bodyColor" id="contact">
+      <div className=" px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold mb-4">Contact Us</h2>
           <p className="text-lg font-bold">Get in touch with our team</p>

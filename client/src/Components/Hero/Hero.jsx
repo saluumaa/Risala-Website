@@ -11,7 +11,8 @@ const Hero = () => {
   const [t, i18n] = useTranslation();
   const news = useSelector((state) => state.news.news);
   const images = news.length > 0 && news[news.length - 1].images.length > 0
-  ? news[news.length - 1].images.map(image => `https://risala-website.onrender.com/${image}`)
+  // ? news[news.length - 1].images.map(image => `https://risala-website.onrender.com/${image}`)
+  ? news[news.length - 1].images.map(image => `http://localhost:8800/${image}`)
   : ['/education2.jpg'];
 
 
@@ -55,7 +56,7 @@ const Hero = () => {
     //   </div>
     //   <Donate className="donate" />
     //  </section>
-    <div className="relative min-h-64 w-full">
+    <motion.div className="relative min-h-64 w-full">
       <div className="absolute inset-0">
         <img src={images[index]
          } alt={`Organization Pictures  ${index + 1 }`}    
@@ -67,29 +68,47 @@ const Hero = () => {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
         <div className="text-center">
           <FaHeart className="h-12 w-12 text-blue-400 mx-auto mb-6" />
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6">
+          <motion.h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6"
+            initial={{ opacity: 0, x: -100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.5, duration: 0.5 }}
+          >
             {t('hero.title1')}
             <br />
             {t('hero.title2')}
-          </h1>
-          <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
+          </motion.h1>
+          <motion.p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8"
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.7, duration: 0.5 }}
+          >
             {t('hero.text')}
-          </p>
+          </motion.p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/donate">
-              <button className="bg-blue-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-600 transition-colors">
+              <motion.button className="bg-blue-500 text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-600 transition-colors"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.9, duration: 0.5 }}
+                whileHover={{ scale: 1.05 }}
+              >
                 {t('hero.donate')}
-              </button>
+              </motion.button>
             </Link>
            <Link to='/volunteer'>
-            <button className="bg-white text-blue-900 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
+            <motion.button className="bg-white text-blue-900 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.1, duration: 0.5 }}
+              whileHover={{ scale: 1.05 }}
+            >
               {t('hero.volunteer')}
-            </button>
+            </motion.button>
             </Link>
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 

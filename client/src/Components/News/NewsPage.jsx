@@ -34,7 +34,7 @@ const NewsPage = () => {
   className="mt-16 "
   initial={{ x: -230, opacity: 0 }}
   whileInView={{ x: 0, opacity: 1 }}
-  transition={{ duration: 1.5, type: 'spring', stiffness: 150 }}
+  transition={{ duration: 1.5, type: 'spring', stiffness: 50 }}
 >
   <motion.div
     className="news-header-text"
@@ -50,7 +50,12 @@ const NewsPage = () => {
 
 {/* Slider Container */}
 
-<div className="bg-bodyBackground text-bodyColor relative overflow-hidden w-full h-[400px] mx-4 flex items-center justify-center">
+<motion.div className="bg-bodyBackground text-bodyColor relative overflow-hidden w-full h-[400px] mx-4 flex items-center justify-center"
+  initial={{ opacity: 0, x: -150 }}
+  animate={{ opacity: 1, x: 0 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  transition={{ duration: 1, delay: 0.8 }}
+>
   {news?.length > 0 && (
     <>
       {/* News Items */}
@@ -72,7 +77,8 @@ const NewsPage = () => {
               <div className="relative ">
                 <img
                   className="w-full  object-cover rounded-2xl"
-                  src={`https://risala-website.onrender.com/${item.images[0]}`}
+                  // src={`https://risala-website.onrender.com/${item.images[0]}`}
+                  src={`http://localhost:8800/${item.images[0]}`}
                   alt="news"
                 />
               </div>
@@ -99,7 +105,10 @@ const NewsPage = () => {
                   <h3 className="text-2xl font-bold hover:text-green-600 transition-colors duration-300">
                     {item.title}
                   </h3>
-                  {/* <p className="mt-2 w-[80%]" dangerouslySetInnerHTML={{ __html: item.body.slice(0, 120) }}></p> */}
+                  <p
+                    className="mt-2 w-[80%] hidden md:block"
+                    dangerouslySetInnerHTML={{ __html: item.body.slice(0, 150) }}
+                  ></p>
                   <button className="mt-4 flex items-center text-bodyColor-500 hover:text-blue-600 transition-colors duration-300">
                     Read more
                     <span className="read-more-arrow ml-2">
@@ -116,7 +125,7 @@ const NewsPage = () => {
       </div>
     </>
   )}
-</div>
+</motion.div>
 
 
 
