@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 import apiRequest from '../utils/apiRequest';
-import Cookies from 'js-cookie';
+
 
 const initialState = {
   news: [],
@@ -20,79 +19,6 @@ export const fetchNews = createAsyncThunk('news/fetchNews', async () => {
 });
 
 
-// export const createNews = createAsyncThunk(
-//   'news/createNews',
-//   async ( { rejectWithValue }) => {
-//     try {
-//       const response = await apiRequest.post('/news',  {
-//         headers: {
-//           'Content-Type': 'multipart/form-data',
-//           credentials: 'include',
-//         }
-//       });
-//       return response.data;
-//     } catch (error) {
-//       return rejectWithValue(error.message);
-//     }
-//   }
-// );
-
-
-// export const eraseNews = createAsyncThunk(
-//   'news/eraseNews',
-//   async (id, { rejectWithValue, getState }) => {
-//     try {
-//       const { currentUser } = getState().user;
-//       if (!currentUser || !currentUser.isAdmin) {
-//         throw new Error('Only admins can delete news');
-//       }
-
-//       const token = getToken();
-//       if (!token) {
-//         throw new Error('User is not authenticated. Authentication token not found.');
-//       }
-
-//       const headers = {
-//         Authorization: `Bearer ${token}`,
-//         'Content-Type': 'application/json',
-//       };
-
-//       const response = await axios.delete(`http://localhost:3000/api/v1/news/${id}`, { headers });
-
-//       return response.data;
-//     } catch (error) {
-//       return rejectWithValue(error.message);
-//     }
-//   }
-// );
-
-// export const updateNews = createAsyncThunk(
-//   'news/updateNews',
-//   async ({ id, formData }, { rejectWithValue, getState }) => {
-//     try {
-//       const { currentUser } = getState().user;
-//       if (!currentUser || !currentUser.isAdmin) {
-//         throw new Error('Only admins can update news');
-//       }
-
-//       const token = getToken();
-//       if (!token) {
-//         throw new Error('User is not authenticated. Authentication token not found.');
-//       }
-
-//       const headers = {
-//         Authorization: `Bearer ${token}`,
-//         'Content-Type': 'multipart/form-data',
-//       };
-
-//       const response = await axios.put(`http://localhost:3000/api/v1/news/${id}`, formData, { headers });
-
-//       return response.data;
-//     } catch (error) {
-//       return rejectWithValue(error.message);
-//     }
-//   }
-// );
 
 const newsSlice = createSlice({
   name: 'news',
@@ -113,48 +39,7 @@ const newsSlice = createSlice({
         state.loading = false;
         state.error = action.error.message;
       })
-      // .addCase(createNews.pending, (state) => {
-      //   state.loading = true;
-      //   state.error = null;
-      // })
-      // .addCase(createNews.fulfilled, (state, action) => {
-      //   state.loading = false;
-      //   state.error = null;
-      //   state.news.push(action.payload);
-      // })
-      // .addCase(createNews.rejected, (state, action) => {
-      //   state.loading = false;
-      //   state.error = action.payload;
-      // })
-      // .addCase(eraseNews.pending, (state) => {
-      //   state.loading = true;
-      //   state.error = null;
-      // })
-      // .addCase(eraseNews.fulfilled, (state, action) => {
-      //   state.loading = false;
-      //   state.error = null;
-      //   state.news = state.news.filter((item) => item.id !== action.payload);
-      // })
-      // .addCase(eraseNews.rejected, (state, action) => {
-      //   state.loading = false;
-      //   state.error = action.payload;
-      // })
-      // .addCase(updateNews.pending, (state) => {
-      //   state.loading = true;
-      //   state.error = null;
-      // })
-      // .addCase(updateNews.fulfilled, (state, action) => {
-      //   state.loading = false;
-      //   state.error = null;
-      //   const index = state.news.findIndex((news) => news.id === action.payload.id);
-      //   if (index !== -1) {
-      //     state.news[index] = action.payload;
-      //   }
-      // })
-      // .addCase(updateNews.rejected, (state, action) => {
-      //   state.loading = false;
-      //   state.error = action.payload;
-      // });
+     
   },
 });
 

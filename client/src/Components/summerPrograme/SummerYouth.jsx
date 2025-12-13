@@ -1,5 +1,4 @@
 import { useState } from "react";
-import axios from "axios";
 import apiRequest from "../../utils/apiRequest";
 
 const SummerYouth = () => {
@@ -12,6 +11,7 @@ const SummerYouth = () => {
     school: "",
     area: "",
   });
+  const [message, setMessage] = useState("");
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -21,7 +21,9 @@ const SummerYouth = () => {
     e.preventDefault();
     try {
       const response = await apiRequest.post("/syp", formData);
-      alert("Registration successful!");
+      if (response.status === 201) {
+        setMessage("Registration successful!");
+      }
       setFormData({
         participantName: "",
         telephoneNo: "",
@@ -165,6 +167,13 @@ const SummerYouth = () => {
       >
         Register
       </button>
+
+      {/* Message Display */}
+      {message && (
+        <div className="mt-4 text-green-600 font-semibold text-center">
+          {message}
+        </div>
+      )}
     </form>
   );
 };

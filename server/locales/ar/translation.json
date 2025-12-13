@@ -1,0 +1,55 @@
+{
+    "auth": {
+        "emailRequired": "البريد الإلكتروني مطلوب",
+        "passwordRequired": "كلمة المرور مطلوبة",
+        "invalidCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة",
+        "userExists": "المستخدم موجود بالفعل",
+        "registerSuccess": "تم تسجيل المستخدم بنجاح",
+        "loginSuccess": "تم تسجيل الدخول بنجاح",
+        "logoutSuccess": "تم تسجيل الخروج بنجاح",
+        "unauthorized": "وصول غير مصرح به",
+        "tokenInvalid": "رمز غير صالح أو منتهي الصلاحية"
+    },
+    "user": {
+        "notFound": "المستخدم غير موجود",
+        "updateSuccess": "تم تحديث المستخدم بنجاح",
+        "deleteSuccess": "تم حذف المستخدم بنجاح",
+        "fetchSuccess": "تم جلب المستخدمين بنجاح"
+    },
+    "news": {
+        "notFound": "الخبر غير موجود",
+        "createSuccess": "تم إنشاء الخبر بنجاح",
+        "updateSuccess": "تم تحديث الخبر بنجاح",
+        "deleteSuccess": "تم حذف الخبر بنجاح",
+        "fetchSuccess": "تم جلب الأخبار بنجاح"
+    },
+    "programme": {
+        "notFound": "البرنامج غير موجود",
+        "registerSuccess": "تم التسجيل في البرنامج بنجاح",
+        "updateSuccess": "تم تحديث البرنامج بنجاح",
+        "deleteSuccess": "تم حذف البرنامج بنجاح",
+        "fetchSuccess": "تم جلب البرامج بنجاح",
+        "unauthorized": "يمكنك فقط تحديث تسجيلك الخاص",
+        "statusUpdated": "تم تحديث حالة التسجيل"
+    },
+    "validation": {
+        "required": "{{field}} مطلوب",
+        "invalid": "{{field}} غير صالح",
+        "tooShort": "{{field}} قصير جدًا",
+        "tooLong": "{{field}} طويل جدًا",
+        "mustBeEmail": "يجب أن يكون عنوان بريد إلكتروني صالح"
+    },
+    "errors": {
+        "serverError": "خطأ في الخادم الداخلي",
+        "notFound": "المورد غير موجود",
+        "badRequest": "طلب خاطئ",
+        "forbidden": "الوصول محظور",
+        "unauthorized": "غير مصرح"
+    },
+    "success": {
+        "operationSuccess": "تمت العملية بنجاح",
+        "dataFetched": "تم جلب البيانات بنجاح",
+        "dataSaved": "تم حفظ البيانات بنجاح",
+        "dataDeleted": "تم حذف البيانات بنجاح"
+    }
+}

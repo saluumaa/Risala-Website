@@ -1,43 +1,50 @@
-import mongoose from "mongoose";
+import { DataTypes } from 'sequelize';
+import sequelize from '../config/db.js';
 
-const sProgrammeSchema = new mongoose.Schema({
-    participantName:{
-        type: String,
-        required: true,
+const SProgramme = sequelize.define('SProgramme', {
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
     },
-    telephoneNo:{
-        type: String,
-        required: true,
+    participantName: {
+        type: DataTypes.STRING,
+        allowNull: false,
     },
-    age:{
-        type: Number,
-        required: true,
+    telephoneNo: {
+        type: DataTypes.STRING,
+        allowNull: false,
     },
-    gender:{
-        type: String,
-        required: true,
+    age: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
     },
-    educationLevel:{
-        type: String,
-        required: true,
+    gender: {
+        type: DataTypes.STRING,
+        allowNull: false,
     },
-    school:{
-        type: String,
-        required: true,
+    educationLevel: {
+        type: DataTypes.STRING,
+        allowNull: false,
     },
-    area:{
-        type: String,
-        required: true,
+    school: {
+        type: DataTypes.STRING,
+        allowNull: false,
     },
-    isActive:{
-        type: Boolean,
-        default: false,
+    area: {
+        type: DataTypes.STRING,
+        allowNull: false,
     },
-    author:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-    }
-}, {timestamps: true});
+    authorId: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        references: {
+            model: 'Users',
+            key: 'id',
+        },
+    },
+}, {
+    timestamps: true,
+});
 
-const SProgramme = mongoose.model('SProgramme', sProgrammeSchema);
 export default SProgramme;

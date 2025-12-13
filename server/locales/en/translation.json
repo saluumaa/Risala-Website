@@ -1,0 +1,55 @@
+{
+    "auth": {
+        "emailRequired": "Email is required",
+        "passwordRequired": "Password is required",
+        "invalidCredentials": "Invalid email or password",
+        "userExists": "User already exists",
+        "registerSuccess": "User registered successfully",
+        "loginSuccess": "Login successful",
+        "logoutSuccess": "Logout successful",
+        "unauthorized": "Unauthorized access",
+        "tokenInvalid": "Invalid or expired token"
+    },
+    "user": {
+        "notFound": "User not found",
+        "updateSuccess": "User updated successfully",
+        "deleteSuccess": "User deleted successfully",
+        "fetchSuccess": "Users fetched successfully"
+    },
+    "news": {
+        "notFound": "News not found",
+        "createSuccess": "News created successfully",
+        "updateSuccess": "News updated successfully",
+        "deleteSuccess": "News deleted successfully",
+        "fetchSuccess": "News fetched successfully"
+    },
+    "programme": {
+        "notFound": "Programme not found",
+        "registerSuccess": "Programme registration successful",
+        "updateSuccess": "Programme updated successfully",
+        "deleteSuccess": "Programme deleted successfully",
+        "fetchSuccess": "Programmes fetched successfully",
+        "unauthorized": "You can only update your own registration",
+        "statusUpdated": "Registration status updated"
+    },
+    "validation": {
+        "required": "{{field}} is required",
+        "invalid": "Invalid {{field}}",
+        "tooShort": "{{field}} is too short",
+        "tooLong": "{{field}} is too long",
+        "mustBeEmail": "Must be a valid email address"
+    },
+    "errors": {
+        "serverError": "Internal server error",
+        "notFound": "Resource not found",
+        "badRequest": "Bad request",
+        "forbidden": "Access forbidden",
+        "unauthorized": "Unauthorized"
+    },
+    "success": {
+        "operationSuccess": "Operation completed successfully",
+        "dataFetched": "Data fetched successfully",
+        "dataSaved": "Data saved successfully",
+        "dataDeleted": "Data deleted successfully"
+    }
+}

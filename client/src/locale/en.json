@@ -6,10 +6,10 @@
         "donate": "Donate Now",
         "volunteer": "Volunteer With Us"
     },
-    "donate":{
+    "donate": {
         "h2": "Changed Over",
         "span": " 1000",
-        "p": " individuals in the community through our programs", 
+        "p": " individuals in the community through our programs",
         "h2Donated": "Donate Money",
         "pDonated": " Help us continue our mission to build better future together.",
         "donateNow": "Donate Now",
@@ -18,14 +18,13 @@
         "volunteerNow": "Volunteer"
     },
     "services": {
-            "mainTitle": "Our Services",
-             "eTitle": "Education",
-             "eText": "We provide free education to the children of the community. We believe that education is the key to success and we want to give every child a chance to succeed.",
-             "hTitle": "Livelihood",
-             "hText": "We provide free livelihood services to the community. We believe that livelihood is the key to success and we want to give every child a chance to succeed.",
-             "fTitle": "Health",
-             "fText": "We provide free health services to the community. We believe that health is the key to success and we want to give every child a chance to succeed."
-         
+        "mainTitle": "Our Services",
+        "eTitle": "Education",
+        "eText": "We provide free education to the children of the community. We believe that education is the key to success and we want to give every child a chance to succeed.",
+        "hTitle": "Livelihood",
+        "hText": "We provide free livelihood services to the community. We believe that livelihood is the key to success and we want to give every child a chance to succeed.",
+        "fTitle": "Health",
+        "fText": "We provide free health services to the community. We believe that health is the key to success and we want to give every child a chance to succeed."
     },
     "navbar": {
         "home": "Home",
@@ -38,36 +37,39 @@
         "news": "News",
         "login": "Login",
         "logout": "Logout",
-        "profile": "Profile"
-
+        "profile": "Profile",
+        "dashboard": "Dashboard"
     },
-    
     "footer": {
         "about": "About Us",
+        "aboutText": "Risala Organization is dedicated to empowering communities through education, healthcare, and sustainable development.",
+        "quickLinks": "Quick Links",
         "services": "Services",
         "contact": "Contact Us",
         "news": "News",
         "privacy": "Privacy Policy",
         "terms": "Terms of Service",
-        "socialMedia": "Follow Us"
+        "socialMedia": "Follow Us",
+        "newsletter": "Newsletter",
+        "newsletterText": "Subscribe to our newsletter for updates",
+        "subscribe": "Subscribe",
+        "copyright": "© 2024 Risala Organization. All rights reserved."
     },
     "about": {
         "title": "Get to Know Us",
-         "description": " Al-Risala Organization is a non-profit organization that focuses on education and social activities. Established in 2017, we have been active in education, social, and religious fields, empowering communities worldwide.",
-          "vision": "Our Vision",
-          "visionText": "To create a world where every individual has access to quality education, healthcare, and opportunities for sustainable development.",
-            "mission": "Our Mission",
-            "missionText": "To empower communities through education, healthcare, and sustainable development initiatives that foster self-reliance and resilience.",
-            "values": "Our Values",
-            "valuesText": "Integrity, compassion, collaboration, and respect for all individuals are at the core of our organization. We believe in the power of community and the importance of working together to create lasting change.",
-            "hierarchy": "Our Hierarchy",
-            "hierarchyText": "Our organization is structured to ensure effective management and accountability. We have a dedicated team of professionals and volunteers who work tirelessly to achieve our mission."
-        },
-
+        "description": "Al-Risala Organization is a non-profit organization that focuses on education and social activities. Established in 2017, we have been active in education, social, and religious fields, empowering communities worldwide.",
+        "vision": "Our Vision",
+        "visionText": "To create a world where every individual has access to quality education, healthcare, and opportunities for sustainable development.",
+        "mission": "Our Mission",
+        "missionText": "To empower communities through education, healthcare, and sustainable development initiatives that foster self-reliance and resilience.",
+        "values": "Our Values",
+        "valuesText": "Integrity, compassion, collaboration, and respect for all individuals are at the core of our organization. We believe in the power of community and the importance of working together to create lasting change.",
+        "hierarchy": "Our Hierarchy",
+        "hierarchyText": "Our organization is structured to ensure effective management and accountability. We have a dedicated team of professionals and volunteers who work tirelessly to achieve our mission."
+    },
     "impact": {
         "title": "Our Impact",
-        "text": "We are committed to transforming lives through education, awareness, and women empowerment. Here’s what we’ve achieved so far:",
-
+        "text": "We are committed to transforming lives through education, awareness, and women empowerment. Here's what we've achieved so far:",
         "liveno": "500+",
         "liveText": "Lives Impacted",
         "compro": "100+",
@@ -75,17 +77,65 @@
         "peono": "200+",
         "peoText": "People Reached"
     },
-
     "testimonials": {
         "title": "Voices of Change",
-        "text": "Hear from the individuals and families whose lives have been transformed through our<strong>health</strong>, <strong>education</strong>, and <strong>livelihood</strong> programs.",
+        "text": "Hear from the individuals and families whose lives have been transformed through our health, education, and livelihood programs.",
         "test1": "Through the health sessions, I learned how to protect my family from common diseases. We're living healthier and happier!",
         "name1": "Mohamed Y.",
-        "test2": "The vocational training gave me real skills. Now I earn a steady income and support my children’s education.",
+        "test2": "The vocational training gave me real skills. Now I earn a steady income and support my children's education.",
         "name2": "Sahra A.",
         "test3": "After taking their free learning courses, I landed my first job. This NGO truly opened the doors to a better future.",
         "name3": "Ali K."
+    },
+    "home": {
+        "mission": {
+            "title": "Our Mission",
+            "subtitle": "Risala Organization is dedicated to empowering communities through education, healthcare, and sustainable development programs across Somalia.",
+            "education": "Education",
+            "educationText": "Providing quality education and learning opportunities for youth",
+            "community": "Community Support",
+            "communityText": "Building stronger communities through collaborative programs",
+            "healthcare": "Healthcare",
+            "healthcareText": "Ensuring access to essential healthcare services for all"
+        },
+        "news": {
+            "title": "Latest News",
+            "subtitle": "Stay updated with our recent activities and impact",
+            "viewAll": "View All"
+        },
+        "cta": {
+            "title": "Join Us in Making a Difference",
+            "subtitle": "Your support can transform lives. Whether through donations, volunteering, or spreading awareness, every contribution matters.",
+            "donate": "Donate Now",
+            "volunteer": "Become a Volunteer"
+        }
+    },
+    "admin": {
+        "dashboard": "Dashboard",
+        "users": "Users",
+        "news": "News",
+        "programmes": "Programmes",
+        "settings": "Settings",
+        "welcome": "Welcome to Admin Dashboard",
+        "totalUsers": "Total Users",
+        "totalNews": "Total News",
+        "totalProgrammes": "Total Programmes",
+        "recentActivity": "Recent Activity"
+    },
+    "common": {
+        "loading": "Loading...",
+        "error": "Error",
+        "success": "Success",
+        "save": "Save",
+        "cancel": "Cancel",
+        "delete": "Delete",
+        "edit": "Edit",
+        "add": "Add",
+        "search": "Search",
+        "filter": "Filter",
+        "submit": "Submit",
+        "close": "Close",
+        "yes": "Yes",
+        "no": "No"
     }
-    
-
 }

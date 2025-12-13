@@ -18,14 +18,14 @@ const News = () => {
 
   return (
     <>
-          {user && user.role === 'admin' && (
+          {/* {user && user.role === 'admin' && (
         <div className='add-delete-btn add-btn'>
           <Link to='/addnews'>
             <button
             >Add News</button>
           </Link>
         </div>
-      )}
+      )} */}
     <div className='news-page-frame'>
   
       {news?.length > 0 && news.slice().reverse().map((item, index) => (
@@ -36,7 +36,8 @@ const News = () => {
           transition={{ delay: 0.2, duration: 0.5 }}
         >
           <div className="news-img-date">
-              <img src={`https://risala-website.onrender.com/${item.images[0]}`}
+              {/* <img src={`https://risala-website.onrender.com/${item.images[0]}`} */}
+              <img src={`http://localhost:8800/${item.images[0]}`}          
               alt='news' className='post-image' />
               {/* <div className='date'> */}
                 <h5>
