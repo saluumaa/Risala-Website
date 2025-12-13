@@ -1,44 +1,43 @@
-import SProgramme from "../models/SProgramme.js";
+import { SProgramme } from "../models/index.js";
 
-export const getSYPs= async (req, res) => {
+export const getSYPs = async (req, res) => {
     try {
-        const sProgrammes = await SProgramme.find();
+        const sProgrammes = await SProgramme.findAll();
         res.status(200).json(sProgrammes);
-    }catch (error) {
-        res.status(404).json({message: error.message});
+    } catch (error) {
+        res.status(404).json({ message: error.message });
     }
 }
 
 
-export const getSYP= async (req, res) => {
+export const getSYP = async (req, res) => {
     const tokenUserId = req.user.id;
-    const {id} = req.params;
-   
-    try {
-        const sProgramme = await SProgramme.findById(id);
+    const { id } = req.params;
 
-        if(!sProgramme){
-            return res.status(404).json({message: 'Registeration not found'});
+    try {
+        const sProgramme = await SProgramme.findByPk(id);
+
+        if (!sProgramme) {
+            return res.status(404).json({ message: 'Registeration not found' });
         }
 
-        if (sProgramme.userId !== tokenUserId && req.user.role !== 'admin') {
+        if (sProgramme.authorId !== tokenUserId && req.user.role !== 'admin') {
             return res.status(401).json({ message: 'Unauthorized Access' });
         }
 
         res.status(200).json(sProgramme);
-    }catch (error) {
-        res.status(404).json({message: error.message});
+    } catch (error) {
+        res.status(404).json({ message: error.message });
     }
-    
+
 }
 
-export const createSYP= async (req, res) => {
+export const createSYP = async (req, res) => {
     const { participantName, telephoneNo, age, gender, educationLevel, school, area } = req.body;
-    const tokenUserId = req.user.id;
-    if(!tokenUserId){
-        return res.status(401).json({message: 'you should be logged in to register the programme'});
-    }
-    try{
+    // tokenUserId will be undefined if not logged in, which is fine for public registration
+    const tokenUserId = req.user ? req.user.id : null;
+
+    try {
         const sProgramme = await SProgramme.create({
             participantName,
             telephoneNo,
@@ -47,99 +46,77 @@ export const createSYP= async (req, res) => {
             educationLevel,
             school,
             area,
-            author: tokenUserId,
+            authorId: tokenUserId,
         });
         res.status(201).json(sProgramme);
 
-    }catch(error){
-        res.status(500).json({message: error.message});
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: error.message });
     }
-    
+
 }
 
-export const updateSYP= async (req, res) => {
-    const id = req.params.id;
+export const updateSYP = async (req, res) => {
+    const id = parseInt(req.params.id);
     const tokenUserId = req.user.id;
     const { participantName, telephone, age, gender, educationLevel, school, area } = req.body;
-    if(id !==tokenUserId){
-        return res.status(401).json({message: 'you can only update your own registeration'});
-    }
+
     try {
-        const updatedSYP = await SProgramme.findByIdAndUpdate(id, {
+        const sProgramme = await SProgramme.findByPk(id);
+        if (!sProgramme) return res.status(404).json({ message: 'Not found' });
+
+        if (sProgramme.authorId !== tokenUserId) {
+            return res.status(401).json({ message: 'you can only update your own registeration' });
+        }
+
+        const [updated] = await SProgramme.update({
             participantName,
-            telephone,
+            telephoneNo: telephone,
             age,
             gender,
             educationLevel,
             school,
             area
-        }, {new: true});
-        res.status(200).json(updatedSYP);
+        }, {
+            where: { id },
+            returning: true
+        });
 
-    }catch(error){
-        res.status(500).json({message: error.message});
+        if (updated) {
+            const updatedDoc = await SProgramme.findByPk(id);
+            res.status(200).json(updatedDoc);
+        } else {
+            res.status(404).json({ message: "Not found" });
+        }
+
+    } catch (error) {
+        res.status(500).json({ message: error.message });
     }
-        
+
 }
 
-export const toggleRegistration = async (req, res) => {
-    try {
-      const { isActive } = req.body;
-  
-      const updatedStatus = await SProgramme.findOneAndUpdate(
-        {},
-        { isActive },
-        { new: true, upsert: true }
-      );
-  
-      res.status(200).json({ message: 'Registration status updated', updatedStatus });
-    } catch (error) {
-      res.status(500).json({ message: error.message });
-    }
-  };
 
 
-  export const statusUpdate = async (req, res) => {
-    try {
-      let status = await SProgramme.findOne({});
-  
-      // If no document exists, initialize one with a default status
-      if (!status) {
-        status = await SProgramme.create({ isActive: false });
-      }
-  
-      // Respond with the isActive value
-      res.status(200).json({
-        isActive: status.isActive
-      });
-      
-    } catch (error) {
-      console.error('Error fetching status:', error.message);
-      res.status(500).json({ message: 'Failed to retrieve status. Please try again later.' });
-    }
-    
-  };
-  
 
 export const deleteSYP = async (req, res) => {
     const { id } = req.params;
-    const tokenUserId = req.user.id; 
+    const tokenUserId = req.user.id;
 
     try {
-        const sProgramme = await SProgramme.findById(id);
+        const sProgramme = await SProgramme.findByPk(id);
 
         if (!sProgramme) {
             return res.status(404).json({ message: 'Programme not found' });
         }
-        if (sProgramme.userId!== tokenUserId && req.user.role !== 'admin') {
+        if (sProgramme.authorId !== tokenUserId && req.user.role !== 'admin') {
             return res.status(401).json({ message: 'You can only delete your own registration or must be an admin' });
         }
 
-        await SProgramme.findByIdAndDelete(id);
+        await SProgramme.destroy({ where: { id } });
         res.status(200).json({ message: 'Registration deleted successfully' });
-        
+
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 };
-

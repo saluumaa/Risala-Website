@@ -1,37 +1,46 @@
-import mongoose from "mongoose";
-const postSchema = new mongoose.Schema({
+import { DataTypes } from 'sequelize';
+import sequelize from '../config/db.js';
+
+const Post = sequelize.define('Post', {
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+    },
     title: {
-        type: String,
-        required: true,
+        type: DataTypes.STRING,
+        allowNull: false,
     },
     body: {
-        type: String,
-        required: true,
+        type: DataTypes.TEXT,
+        allowNull: false,
     },
     images: {
-        type: Array,
-        // required: true,
-    }, 
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        defaultValue: [],
+    },
     date: {
-        type: Date,
-        required: true,
-    }, 
+        type: DataTypes.DATE,
+        allowNull: false,
+    },
     place: {
-        type: String,
-        default: 'Risala-place',
+        type: DataTypes.STRING,
+        defaultValue: 'Risala-place',
     },
     target: {
-        type: String,
-        default: 'All',
+        type: DataTypes.STRING,
+        defaultValue: 'All',
     },
-    author: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true,
+    authorId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'Users', // Note: Sequelize pluralizes table names by default
+            key: 'id',
+        },
     },
+}, {
+    timestamps: true,
+});
 
-
-}, { timestamps: true });
-
-const Post = mongoose.model('Post', postSchema);
 export default Post;

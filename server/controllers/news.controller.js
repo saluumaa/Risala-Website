@@ -1,25 +1,25 @@
 import jwt from 'jsonwebtoken';
-import Post from '../models/Post.js';
+import { Post } from '../models/index.js';
 
-export const getnews= async (req, res) => {
-    try{
-        const news = await Post.find();
+export const getnews = async (req, res) => {
+    try {
+        const news = await Post.findAll();
         res.status(200).json(news);
-    }catch(error){
-        res.status(404).json({message: error.message})
+    } catch (error) {
+        res.status(404).json({ message: error.message })
     }
-    
+
 }
 
-export const getSingleNews= async (req, res) => {
-   const id = req.params.id
+export const getSingleNews = async (req, res) => {
+    const id = req.params.id
     console.log(id)
-   try{
-      const newsChange = await Post.findById(id)
-      res.status(200).json(newsChange)
-   }catch(error){
-       res.status(404).json({message: error.message})
-   }
+    try {
+        const newsChange = await Post.findByPk(id)
+        res.status(200).json(newsChange)
+    } catch (error) {
+        res.status(404).json({ message: error.message })
+    }
 }
 
 export const createNews = async (req, res) => {
@@ -33,7 +33,7 @@ export const createNews = async (req, res) => {
             date,
             place,
             target,
-            author: req.user.id
+            authorId: req.user.id
         });
         console.log(addPost);
         res.status(201).json(addPost);
@@ -43,33 +43,42 @@ export const createNews = async (req, res) => {
     }
 };
 
-export const updateNews= async (req, res) => {
-    const id = req.params.id;
+export const updateNews = async (req, res) => {
+    const id = parseInt(req.params.id);
     const tokenUserId = req.user.id;
     const { title, body, images, date, place, target } = req.body;
-    try{
-        const updatedNews = await Post.findByIdAndUpdate(id, {
+    try {
+        const [updated] = await Post.update({
             title,
             body,
             images,
             date,
             place,
             target
-        }, {new: true});
-        res.status(200).json(updatedNews);
-    }catch(error){
+        }, {
+            where: { id },
+            returning: true
+        });
+
+        if (updated) {
+            const updatedNews = await Post.findByPk(id);
+            res.status(200).json(updatedNews);
+        } else {
+            res.status(404).json({ message: "News not found" });
+        }
+    } catch (error) {
         res.status(500).json({ message: error.message });
     }
-    
+
 }
 
-export const deleteNews= async (req, res) => {
+export const deleteNews = async (req, res) => {
     const id = req.params.id
-    try{   
-    const deleteNews = await Post.findByIdAndDelete(id)
-    res.status(200).json(deleteNews)
-    }catch(error){
+    try {
+        const deleteNews = await Post.destroy({ where: { id } })
+        res.status(200).json(deleteNews)
+    } catch (error) {
         res.status(500).json({ message: error.message });
     }
-    
+
 }

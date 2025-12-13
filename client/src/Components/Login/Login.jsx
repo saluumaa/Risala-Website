@@ -1,176 +1,133 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import apiRequest from '../../utils/apiRequest';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { setUser } from '../../redux/UsersSlice';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaEnvelope, FaLock, FaArrowRight, FaGoogle, FaFacebook } from 'react-icons/fa';
 
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [error, setError] = useState(null);
-  const [isRegister, setIsRegister] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setError(null);
+    setIsLoading(true);
+
     const formData = new FormData(e.target);
-    const data = {
-      email: formData.get('email'),
-      password: formData.get('password'),
-    };
+    const data = Object.fromEntries(formData);
 
     try {
       const response = await apiRequest.post('/auth/login', data);
       dispatch(setUser(response.data));
       navigate('/');
-    } catch (error) {
-      setError('Invalid email or password');
+    } catch (err) {
+      console.error("Login error:", err);
+      setError(err.response?.data?.message || 'Authentication failed. Please check your credentials.');
+    } finally {
+      setIsLoading(false);
     }
   };
-
-  const handleRegister = async (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const data = {
-      username: formData.get('username'),
-      email: formData.get('email'),
-      password: formData.get('password'),
-    };
-
-    try {
-      const response = await apiRequest.post('/auth/register', data);
-      dispatch(setUser(response.data));
-      navigate('/login');
-    } catch (error) {
-      setError('Registration failed. Please try again.');
-    }
-  };
-
-  const useIsMobile = () => {
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-  
-    useEffect(() => {
-      const handleResize = () => setIsMobile(window.innerWidth < 768);
-      window.addEventListener("resize", handleResize);
-      return () => window.removeEventListener("resize", handleResize);
-    }, []);
-  
-    return isMobile;
-  };
-
-  const isMobile = useIsMobile();
-  const radiusLoginMobile = '0px 200px 0px 200px';
-  const radiusRegisterMobile = '0px 0px 200px 200px';
-
-  const radiusLoginDesktop = '0px 200px 0px 200px';
-  const radiusRegisterDesktop = '0px 0px 300px 300px';
 
   return (
-    <div className=" flex flex-col md:flex-row items-center h-screen bg-bodyBackground overflow-hidden">
-      {/* Left section with welcome message and login/register link, and top section for mobile */}
-      <motion.div
-        className="mt-24 bg-primary w-full md:w-1/2 h-1/2 md:h-full flex flex-col justify-center items-center  md:rounded-bl-none md:rounded-br-[200px] md:rounded-tr-[200px]
-        "
-        initial={{ x: 0, y: 0}}
-        animate={{
-          x: isMobile ? 0 : isRegister ? '100%' : 0,
-          y: isMobile ? (isRegister ? '100%' : 0) : 0,
-          borderRadius: isMobile
-            ? isRegister
-              ? radiusRegisterMobile
-              : radiusLoginMobile
-            : isRegister
-            ? radiusRegisterDesktop
-            : radiusLoginDesktop
-        }}
-        // animate={{
-        //   x: isMobile ? 0 : isRegister ? '100%' : 0,
-        //   y: isMobile ? (isRegister ? '100%' : 0) : 0
-        // }}
-        transition={{ duration: 0.5 }}
-      >
-        <h1 className="text-4xl  font-bold text-white text-center">Welcome to our community</h1>
-        <motion.div
-          className="text-center text-white mt-6"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          {isRegister ? (
-            <>
-              <p className="text-3xl">Create Your Account</p>
-              <p className="text-lg" style={{ marginTop: '1rem' }}>
-                Already have an account?{' '}
-                <span onClick={() => setIsRegister(false)} className="font-semibold underline cursor-pointer">
-                  Login
-                </span>
-              </p>
-            </>
-          ) : (
-            <>
-              <p className="text-3xl py-2">Welcome Back!</p>
-              <p className="text-lg">
-                Don't have an account?{' '}
-                <span
-                  onClick={() => setIsRegister(true)} className="text-white font-semibold underline cursor-pointer"
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center p-4 transition-colors duration-300">
+      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-4xl overflow-hidden flex flex-col md:flex-row min-h-[600px]">
+
+        {/* Left Side - Image/Info */}
+        <div className="md:w-1/2 bg-primary-600 p-12 text-white flex flex-col justify-center relative overflow-hidden">
+          <div className="relative z-10">
+            <h1 className="text-4xl font-bold font-heading mb-6">
+              Welcome Back!
+            </h1>
+            <p className="text-blue-100 text-lg leading-relaxed">
+              To keep connected with us please login with your personal info.
+            </p>
+          </div>
+
+          {/* Abstract Shapes */}
+          <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+            <div className="absolute top-[-50px] left-[-50px] w-40 h-40 rounded-full bg-white blur-3xl"></div>
+            <div className="absolute bottom-[-50px] right-[-50px] w-60 h-60 rounded-full bg-white blur-3xl"></div>
+          </div>
+        </div>
+
+        {/* Right Side - Form */}
+        <div className="md:w-1/2 p-12 flex flex-col justify-center bg-white dark:bg-gray-800">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+              Sign In
+            </h2>
+            <p className="text-gray-500 dark:text-gray-400">
+              Use your admin or user account
+            </p>
+          </div>
+
+          {/* Social Login (Placeholder) */}
+          <div className="flex justify-center gap-4 mb-8">
+            <button className="w-10 h-10 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+              <FaGoogle />
+            </button>
+            <button className="w-10 h-10 rounded-full border border-gray-300 dark:border-gray-600 flex items-center justify-center text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+              <FaFacebook />
+            </button>
+          </div>
+
+          <form onSubmit={handleLogin} className="space-y-4">
+            <AnimatePresence mode='wait'>
+              {error && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  className="p-3 rounded-lg text-sm text-center bg-red-100 text-red-700"
                 >
-                  Register
-                </span>
-              </p>
-            </>
-          )}
-        </motion.div>
-      </motion.div>
+                  {error}
+                </motion.div>
+              )}
+            </AnimatePresence>
 
-      {/* Right section with the form taking the full width */}
-      <motion.div
-        className=" w-full md:w-1/2 h-1/2 md:h-full shadow-lg rounded-lg p-8 flex flex-col justify-center"
-        initial={{ x: 0 }}
-        animate={{
-          x: isMobile ? 0 : isRegister ? '-100%' : 0,
-          y: isMobile ? (isRegister ? '-100%' : 0) : 0
-        }}
-        transition={{ duration: 0.5 }}
-      >
-        <h2 className="text-2xl font-bold text-center mb-6 text-primary">
-          {isRegister ? 'Create an Account' : 'Login'}
-        </h2>
-        {error && <p className="text-red-500 text-center">{error}</p>}
+            <div className="relative">
+              <FaEnvelope className="absolute left-4 top-3.5 text-gray-400" />
+              <input
+                type="email"
+                name="email"
+                placeholder="Email Address"
+                required
+                className="w-full pl-12 pr-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all text-gray-900 dark:text-white placeholder-gray-400"
+              />
+            </div>
 
-        <form onSubmit={isRegister ? handleRegister : handleLogin} className="space-y-4">
-          {isRegister && (
-            <input
-              type="text"
-              name="username"
-              placeholder="Username"
-              className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300"
-              required
-            />
-          )}
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300"
-            required
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300"
-            required
-          />
+            <div className="relative">
+              <FaLock className="absolute left-4 top-3.5 text-gray-400" />
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                required
+                className="w-full pl-12 pr-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition-all text-gray-900 dark:text-white placeholder-gray-400"
+              />
+            </div>
 
-          <motion.button
-            type="submit"
-            className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition-all"
-            whileTap={{ scale: 0.95 }}
-          >
-            {isRegister ? 'Register' : 'Login'}
-          </motion.button>
-        </form>
-      </motion.div>
+            <div className="text-right">
+              <a href="#" className="text-sm text-primary-600 hover:text-primary-700 font-medium">
+                Forgot Password?
+              </a>
+            </div>
+
+            <button
+              type="submit"
+              disabled={isLoading}
+              className="w-full bg-primary-600 text-white py-3 rounded-lg font-bold shadow-lg hover:bg-primary-700 hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+            >
+              {isLoading ? 'Signing In...' : 'Sign In'}
+              {!isLoading && <FaArrowRight />}
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };

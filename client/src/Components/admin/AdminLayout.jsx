@@ -1,64 +1,90 @@
-// src/Components/admin/AdminLayout.jsx
 import React, { useState } from 'react';
-import { Outlet, Link, useLocation } from 'react-router-dom';
-import { FaChartBar, FaUsers, FaNewspaper, FaCog, FaBars, FaTimes, FaDoorOpen } from 'react-icons/fa';
-import { useSelector } from 'react-redux';
-import { selectUser, logout } from '../../redux/UsersSlice';
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { FaHome, FaUsers, FaNewspaper, FaCalendarAlt, FaFileAlt, FaSignOutAlt, FaBars, FaTimes, FaWhatsapp } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout, selectUser } from '../../redux/UsersSlice';
+import ThemeToggle from '../theme/ThemeToggle';
 
 const AdminLayout = () => {
-  const currentUser = useSelector(selectUser)
-  const [sidebarOpen, setSidebarOpen] = useState(true);
-  const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const location = useLocation();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const currentUser = useSelector(selectUser);
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate('/');
+  };
+
+  const navItems = [
+    { path: '/admin/dashboard', label: 'Dashboard', icon: <FaHome /> },
+    { path: '/admin/users', label: 'Users', icon: <FaUsers /> },
+    { path: '/admin/news', label: 'News', icon: <FaNewspaper /> },
+    { path: '/admin/programme', label: 'Programme', icon: <FaCalendarAlt /> },
+    { path: '/admin/registrations', label: 'Registrations', icon: <FaUsers /> },
+    { path: '/admin/reports', label: 'Reports', icon: <FaFileAlt /> },
+    { path: '/admin/whatsapp', label: 'WhatsApp', icon: <FaWhatsapp /> },
+  ];
 
   return (
-    <div className="flex min-h-screen mt-14 lg:mt-20 bg-bodyBackground text-bodyColor ">
+    <div className="flex h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
       {/* Sidebar */}
-      <div className={`fixed md:static bg-primary rounded-lg shadow-lg text-bodyColor p-5 lg:w-64 w-48  min-h-screen transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out`}>
-        <div className="flex justify-between items-center mb-6 md:hidden ">
-          <h2 className="text-xl font-semibold">Admin Dashboard</h2>
-          <button onClick={toggleSidebar}><FaTimes /></button>
-        </div>
-
-        <div className="flex flex-col space-y-4 ">
-          <Link to="/admin/dashboard" className="flex items-center space-x-2 hover:text-yellow-300">
-            <FaChartBar />
-            <span>Dashboard</span>
-          </Link>
-          <Link to="/admin/users" className="flex items-center space-x-2 hover:text-yellow-300">
-            <FaUsers />
-            <span>Users</span>
-          </Link>
-          <Link to="/admin/programs" className="flex items-center space-x-2 hover:text-yellow-300">
-            <FaNewspaper />
-            <span>Programs</span>
-          </Link>
-          <Link to="/admin/summerProgram" className="flex items-center space-x-2 hover:text-yellow-300">
-            <FaNewspaper />
-            <span>Summer Programs</span>
-          </Link>
-          <Link to="/admin/charts" className="flex items-center space-x-2 hover:text-yellow-300">
-            <FaChartBar />
-            <span>Charts</span>
-          </Link>
-
-          <button onClick={() => { logout(); window.location.href = '/' }} className="flex items-center mb-auto space-x-2 hover:text-yellow-300">
-            <FaDoorOpen />
-            <span>Logout</span>
+      <aside className={`fixed inset-y-0 left-0 z-50 w-64 bg-gray-100 dark:bg-gray-800 shadow-lg transform transition-transform duration-300 ease-in-out ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:relative lg:translate-x-0`}>
+        <div className="flex items-center justify-between h-16 px-6 border-b border-gray-200 dark:border-gray-700">
+          <span className="text-2xl font-bold text-primary-600 dark:text-primary-400">Risala Admin</span>
+          <button onClick={() => setIsSidebarOpen(false)} className="lg:hidden text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+            <FaTimes />
           </button>
         </div>
-      </div>
+        <nav className="p-4 space-y-2">
+          {navItems.map((item) => (
+            <Link
+              key={item.path}
+              to={item.path}
+              className={`flex items-center px-4 py-3 text-sm font-medium rounded-lg transition-colors ${location.pathname === item.path
+                ? 'bg-primary-50 text-primary-600 dark:bg-gray-700 dark:text-primary-400'
+                : 'text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-700'
+                }`}
+            >
+              <span className="text-lg mr-3">{item.icon}</span>
+              {item.label}
+            </Link>
+          ))}
+          <button
+            onClick={handleLogout}
+            className="flex w-full items-center px-4 py-3 text-sm font-medium text-red-600 hover:bg-red-50 rounded-lg transition-colors mt-8"
+          >
+            <span className="text-lg mr-3"><FaSignOutAlt /></span>
+            Logout
+          </button>
+        </nav>
+      </aside>
 
       {/* Main Content */}
-      <div className="flex-1 ml-0 md:ml-10 p-4">
-        {/* Top bar for mobile toggle */}
-        <div className="md:hidden mb-4">
-          <button onClick={toggleSidebar} className="text-2xl">
+      <div className="flex-1 flex flex-col overflow-hidden">
+        {/* Topbar */}
+        <header className="flex items-center justify-between h-16 px-6 bg-blue-400 dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700">
+          <button onClick={() => setIsSidebarOpen(true)} className="lg:hidden text-gray-500 hover:text-gray-700 dark:text-gray-400">
             <FaBars />
           </button>
-        </div>
+          <div className="flex items-center space-x-4 ml-auto">
+            <ThemeToggle />
+            <div className="flex items-center space-x-2">
+              <div className="w-8 h-8 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center text-primary-600 dark:text-primary-400 font-bold">
+                {currentUser?.username?.charAt(0).toUpperCase()}
+              </div>
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-300 hidden sm:block">
+                {currentUser?.username}
+              </span>
+            </div>
+          </div>
+        </header>
 
-        {/* Dynamic content */}
-        <Outlet />
+        {/* Page Content */}
+        <main className="flex-1 overflow-y-auto p-6 bg-gray-100 dark:bg-gray-900">
+          <Outlet />
+        </main>
       </div>
     </div>
   );

@@ -21,7 +21,7 @@ const Users = () => {
   return (
     <div className="space-y-6">
       <h1 className="text-2xl font-bold text-gray-800">Manage Users</h1>
-      <table className="min-w-full table-auto bg-white shadow-md rounded-xl overflow-hidden">
+      <table className="min-w-full table-auto bg-gray-100 shadow-md rounded-xl overflow-hidden">
         <thead className="bg-primary text-white">
           <tr>
             <th className="py-2 px-4">Name</th>

@@ -1,185 +1,84 @@
-// import { FaSignOutAlt } from 'react-icons/fa';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { Link, useNavigate } from 'react-router-dom';
-// import { useState, useEffect } from 'react';
-// import { selectUser, logout } from '../../redux/UsersSlice';
-// import apiRequest from '../../utils/apiRequest';
-
-// const Profile = () => {
-//   const currentUser = useSelector(selectUser) || null;
-//   const dispatch = useDispatch();
-//   const navigate = useNavigate();
-//   const [registeredStudents, setRegisteredStudents] = useState([]);
-//   const [isRegistrationActive, setIsRegistrationActive] = useState(false);
-
-//   // Fetch registration status
-//   useEffect(() => {
-//     const fetchStatus = async () => {
-//       try {
-//         const response = await apiRequest.get('/syp/status');
-//         setIsRegistrationActive(response.data.isActive);
-//       } catch (error) {
-//         console.error('Error fetching registration status:', error);
-//       }
-//     };
-//     fetchStatus();
-//   }, []);
-
-//   // Toggle registration status
-//   const handleToggle = async () => {
-//     try {
-//       const newStatus = !isRegistrationActive;
-//       await apiRequest.patch('/syp/activate', { isActive: newStatus });
-//       setIsRegistrationActive(newStatus);
-//     } catch (error) {
-//       console.error('Error toggling registration status:', error);
-//     }
-//   };
-
-
-//   const handleLogout = () => {
-//     dispatch(logout());
-//     navigate('/');
-//   };
-
-//   // Fetch registered students if the user is admin
-//   useEffect(() => {
-//     if (currentUser?.role === 'admin') {
-//       const fetchStudents = async () => {
-//         try {
-//           const response = await apiRequest.get('/syp');
-//           setRegisteredStudents(response.data);
-//         } catch (error) {
-//           console.error('Error fetching students:', error);
-//         }
-//       };
-//       fetchStudents();
-//     }
-//   }, [currentUser]);
-
-//   // console.log('Registered students:', registeredStudents);
-
-//   return (
-//     <div className="profile-container max-w-4xl mt-14 mx-auto p-6 bg-bodyBackground text-bodyColor rounded-lg shadow-md">
-//       {/* Profile Header */}
-//       <div className="profile-header flex justify-between items-center pt-9 mb-6">
-//         <h1 className="text-2xl font-bold text-blue-600">
-//           Welcome, {currentUser.username}
-//         </h1>
-//         <button
-//           className="logout-btn flex items-center gap-2  bg-red-500 px-4 py-2 rounded hover:bg-red-600"
-//           onClick={handleLogout}
-//         >
-//           <FaSignOutAlt />
-//           Logout
-//         </button>
-//       </div>
-
-//       {/* Registration Status */}
-//     <div className="profile-container bg-bodyBackground text-bodyColor">
-//       {currentUser?.role === 'admin' && (
-//         <div className="toggle-section ">
-//           <h3>Registration Status: {isRegistrationActive ? 'Active' : 'Inactive'}</h3>
-//           <button
-//             className={`px-4 py-2 rounded mt-3 ${
-//               isRegistrationActive ? 'bg-red-500' : 'bg-green-500'
-//             } text-primary`}
-//             onClick={handleToggle}
-//           >
-//             {isRegistrationActive ? 'Deactivate Registration' : 'Activate Registration'}
-//           </button>
-//         </div>
-//       )}
-//     </div>
-
-//       {/* Admin Section */}
-//       {currentUser?.role === 'admin' && (
-//         <div className="admin-section space-y-6 bg-bodyBackground text-bodyColor">
-//           {/* View Registered Students */}
-//           <div className="registered-students  p-4 rounded shadow-md">
-//             <h2 className="text-xl font-semibold text-primary mb-4">
-//               Registered Students
-//             </h2>
-//             {registeredStudents?.length > 0 ? (
-//               <table className="w-full text-left border-collapse border border-gray-300">
-//                 <thead>
-//                   <tr className="bg-bodyBackground text-bodyColor">
-//                     <th className="border border-gray-300 px-4 py-2">Name</th>
-//                     <th className="border border-gray-300 px-4 py-2">Age</th>
-//                     <th className="border border-gray-300 px-4 py-2">
-//                       Telephone
-//                     </th>
-//                     <th className="border border-gray-300 px-4 py-2">School</th>
-//                     <th className="border border-gray-300 px-4 py-2">Area</th>
-//                   </tr>
-//                 </thead>
-//                 <tbody className="text-bodyColor">
-//                   {registeredStudents?.map((student) => (
-//                     <tr key={student._id} className="hover:bg-gray-50">
-//                       <td className="border border-gray-300 px-4 py-2">
-//                         {student.participantName}
-//                       </td>
-//                       <td className="border border-gray-300 px-4 py-2">
-//                         {student.age}
-//                       </td>
-//                       <td className="border border-gray-300 px-4 py-2">
-//                         {student.telephoneNo}
-//                       </td>
-//                       <td className="border border-gray-300 px-4 py-2">
-//                         {student.school}
-//                       </td>
-//                       <td className="border border-gray-300 px-4 py-2">
-//                         {student.area}
-//                       </td>
-//                     </tr>
-//                   ))}
-//                 </tbody>
-//               </table>
-//             ) : (
-//               <p className="text-primary">No registered students found.</p>
-//             )}
-//           </div>
-
-//           {/* Add Programmes & News */}
-//           <div className="actions p-4 rounded shadow-md">
-//             <h2 className="text-xl font-semibold text-bodyColor mb-4">
-//               Manage Content
-//             </h2>
-//             <div className="flex space-x-4">
-//               <Link
-//                to='/addnews'
-//                 className="bg-green-500  text-lg px-16 py-2 rounded hover:bg-green-600"
-//               >
-//                 Add News
-//               </Link>
-//             </div>
-//           </div>
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default Profile;
-
-
-import React from 'react'
-import AdminLayout from '../admin/AdminLayout';
-import { useSelector } from 'react-redux'
-import { selectUser } from '../../redux/UsersSlice'
-import { Navigate } from 'react-router-dom'
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectUser, logout } from '../../redux/UsersSlice';
+import { useNavigate } from 'react-router-dom';
+import { FaUser, FaEnvelope, FaSignOutAlt, FaShieldAlt } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 
 const Profile = () => {
-  const currentUser = useSelector(selectUser) || null;
+  const currentUser = useSelector(selectUser);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  if (currentUser?.role === 'admin') {
-    return <Navigate to="/admin/dashboard" replace />
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate('/');
+  };
+
+  if (!currentUser) {
+    navigate('/login');
+    return null;
   }
-  return (
-    <div className=' rounded-lg shadow-md'>
- 
-    </div>
-  )
-}
 
-export default Profile
+  return (
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-20 px-4">
+      <div className="container-custom max-w-2xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden"
+        >
+          {/* Header Background */}
+          <div className="h-32 bg-gradient-to-r from-primary-600 to-secondary-600"></div>
+
+          {/* Profile Content */}
+          <div className="px-8 pb-8">
+            <div className="relative flex justify-between items-end -mt-12 mb-6">
+              <div className="bg-white dark:bg-gray-800 p-1 rounded-full">
+                <div className="w-24 h-24 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-400 text-4xl border-4 border-white dark:border-gray-800">
+                  <FaUser />
+                </div>
+              </div>
+              {currentUser.role === 'admin' && (
+                <span className="bg-primary-100 text-primary-700 dark:bg-primary-900/30 dark:text-primary-400 px-3 py-1 rounded-full text-sm font-semibold flex items-center gap-2 mb-2">
+                  <FaShieldAlt /> Admin
+                </span>
+              )}
+            </div>
+
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-1">
+              {currentUser.username}
+            </h1>
+            <p className="text-gray-500 dark:text-gray-400 mb-8">
+              Member since {new Date(currentUser.createdAt || Date.now()).toLocaleDateString()}
+            </p>
+
+            <div className="space-y-6">
+              <div className="flex items-center p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl">
+                <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-lg flex items-center justify-center mr-4">
+                  <FaEnvelope />
+                </div>
+                <div>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">Email Address</p>
+                  <p className="font-medium text-gray-900 dark:text-white">{currentUser.email}</p>
+                </div>
+              </div>
+
+              <div className="border-t border-gray-100 dark:border-gray-700 pt-6">
+                <button
+                  onClick={handleLogout}
+                  className="w-full flex items-center justify-center gap-2 bg-red-50 text-red-600 hover:bg-red-100 dark:bg-red-900/10 dark:text-red-400 dark:hover:bg-red-900/20 py-3 rounded-xl font-semibold transition-colors"
+                >
+                  <FaSignOutAlt />
+                  Sign Out
+                </button>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </div>
+  );
+};
+
+export default Profile;
