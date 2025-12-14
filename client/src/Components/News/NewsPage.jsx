@@ -49,7 +49,8 @@ const NewsPage = () => {
                 <div className="relative h-56 overflow-hidden bg-gray-200 dark:bg-gray-700">
                   {item.images && item.images.length > 0 ? (
                     <img
-                      src={`http://localhost:8800/${item.images[0]}`}
+                      // src={`http://localhost:8800/${item.images[0]}`}
+                      src={`https://risala-website.onrender.com/${item.images[0]}`}
                       alt={item.title}
                       className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                     />
