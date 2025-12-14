@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import {useSelector } from 'react-redux';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import './App.css';
@@ -27,7 +27,7 @@ import NewsManager from './Components/admin/NewsManager';
 
 // Services
 import Awareness from './Components/Services/awareness/Awareness';
-import WomenEmpowerment from './Components/Services/empowerment/WomenEmpowerment';
+import WomenEmpowerment from './Components/Services/empowerment/womenEmpowerment';
 import Education from './Components/Services/education/Education';
 
 
