@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import {useSelector } from 'react-redux';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import './App.css';
 import Navbar from './Components/Navbar/Navbar';
@@ -44,7 +44,7 @@ const ScrollToTop = () => {
 
 function App() {
   // Theme handling
-  const theme = useSelector((state) => state.theme); // Assuming theme slice exists or handled in Navbar
+  const theme = useSelector((state) => state.theme); 
 
   return (
     <div className="App">
