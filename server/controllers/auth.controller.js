@@ -1,4 +1,3 @@
-
 import { User } from "../models/index.js";
 import bcryptjs from 'bcryptjs'
 import jwt from 'jsonwebtoken'
