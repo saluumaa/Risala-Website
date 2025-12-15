@@ -1,3 +1,6 @@
 node_modules/
 .env
 .vercel
+seed_data.js/
+seed_news.js/
+verify_database.js/
