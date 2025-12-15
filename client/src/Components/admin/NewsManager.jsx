@@ -178,7 +178,7 @@ const NewsManager = () => {
                         <div className="h-48 overflow-hidden bg-gray-200 dark:bg-gray-700 relative">
                             {item.images && item.images.length > 0 ? (
                                 <img
-                                    src={`http://localhost:8800/${item.images[0]}`}
+                                    src={`https://risala-website.onrender.com/${item.images[0]}`}
                                     alt={item.title}
                                     className="w-full h-full object-cover"
                                 />
